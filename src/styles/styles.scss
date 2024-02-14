@@ -1,0 +1,21 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import './_variables.scss';
+
+// NavBar component
+.navbar {
+  background-color: $ce-soir;
+}
+
+// Home component
+.text-container--max-width {
+  width: 700px;
+}
+
+.text {
+  &--persian-pink {
+    color: $persian-pink;
+  }
+}
+
