@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useFetchFeaturedLoveTokensQuery } from "../../store/api";
 
-import { getErrorMessage } from "../../utils/apiUtils";
 import FeaturedLoveToken from "./FeaturedLoveToken";
+import DataLoader from "../../utils/DataLoader";
 
 function Home() {
   const { data: featuredLoveTokens = [], error, isLoading } = useFetchFeaturedLoveTokensQuery();
@@ -20,17 +20,13 @@ function Home() {
 
   return (
     <section className="flex justify-between items-start p-4">
-      {isLoading ? (
-        <h2>Loading...</h2>
-      ) : error ? (
-        <h2>Error loading featured Love Tokens: {getErrorMessage(error)}</h2>
-      ) : (
-        featuredLoveTokens.length === 0 ? (
-          <h2>There are no featured Love Tokens to be displayed</h2>
-        ) : (
-          <FeaturedLoveToken {...currentLoveToken} />
-        )
-      )}
+      <DataLoader
+        isLoading={isLoading}
+        error={error}
+        data={featuredLoveTokens}
+        emptyMessage="There are no featured Love Tokens to be displayed"
+        render={() => <FeaturedLoveToken {...currentLoveToken} />}
+      />
     </section>
   );
 }
