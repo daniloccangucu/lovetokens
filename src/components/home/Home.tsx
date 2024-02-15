@@ -1,22 +1,12 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useFetchFeaturedLoveTokensQuery } from "../../store/api";
 
-import { RootState, AppDispatch } from "../../store";
-import { fetchFeaturedLoveTokens } from "../../store/loveTokensSlice";
 import huggingHands from "../../images/hands-hugging-heart.png";
+import { getErrorMessage } from "../../utils/apiUtils";
 
 function Home() {
-  const dispatch: AppDispatch = useDispatch();
-  const featuredLoveTokens = useSelector((state: RootState) => state.loveTokens.featuredLoveTokens);
-  const status = useSelector((state: RootState) => state.loveTokens.status);
-  const error = useSelector((state: RootState) => state.loveTokens.error);
+  const { data: featuredLoveTokens = [], error, isLoading } = useFetchFeaturedLoveTokensQuery();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-
-  useEffect(() => {
-    if (status === "loading") {
-      dispatch(fetchFeaturedLoveTokens());
-    }
-  }, [status, dispatch])
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,10 +20,10 @@ function Home() {
 
   return (
     <section className="flex justify-between items-start p-4">
-      {status === 'loading' ? (
+      {isLoading ? (
         <h2>Loading...</h2>
-      ) : status === 'failed' ? (
-        <h2>Error loading featured Love Tokens {error ? `: ${error}` : '.'}</h2>
+      ) : error ? (
+        <h2>Error loading featured Love Tokens: {getErrorMessage(error)}</h2>
       ) : (
         featuredLoveTokens.length === 0 ? (
           <h2>There are no featured Love Tokens to be displayed</h2>

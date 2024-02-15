@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
 
-import loveTokenReducer from "./loveTokensSlice";
+import { loveTokenApi } from "./api";
 
 export const store = configureStore({
   reducer: {
-    loveTokens: loveTokenReducer,
+    [loveTokenApi.reducerPath]: loveTokenApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(loveTokenApi.middleware),
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+setupListeners(store.dispatch);
