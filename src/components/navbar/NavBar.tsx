@@ -9,6 +9,11 @@ const NavBar = () => {
           <span className="text-white font-semibold">Love Tokens</span>
         </a>
       </div>
+      <div className="center-section">
+        <a href="/archive" className="text-white">
+          Love Archive
+        </a>
+      </div>
       <div className="right-section flex items-center mr-4">
         <a href="/login" className="text-white mr-3">
           Login

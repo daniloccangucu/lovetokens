@@ -13,9 +13,31 @@
   width: 700px;
 }
 
+// Shared styles
 .text {
   &--persian-pink {
     color: $persian-pink;
   }
 }
 
+.background {
+  &--lighter-persian-pink {
+    background-color: $lighter-persian-pink;
+  }
+  &--lighter-ce-soir {
+    background-color: $lighter-ce-soir;
+  }
+}
+
+.label {
+  &--small {
+    font-size: $small-label-text-size;
+  }
+}
+
+.border {
+  &--ce-soir {
+    border-radius: 5px;
+    border-color: $ce-soir;
+  }
+}

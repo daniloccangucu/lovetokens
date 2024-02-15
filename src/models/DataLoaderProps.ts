@@ -7,5 +7,5 @@ export interface DataLoaderProps {
   error: FetchBaseQueryError | SerializedError | undefined;
   data: LoveToken[];
   emptyMessage: string;
-  render: () => JSX.Element;
+  render: () => React.JSX.Element;
 }

@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/home/Home";
 import NavBar from "./components/navbar/NavBar";
 import "./styles/styles.scss";
-import LoveTokens from "./components/lovetokens/LoveTokens";
+import LoveTokens from "./components/lovearchive/LoveArchive";
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
     <main>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/lovetokens" element={<LoveTokens />} />
+        <Route path="/archive" element={<LoveTokens />} />
       </Routes>
     </main>
   </div>;
