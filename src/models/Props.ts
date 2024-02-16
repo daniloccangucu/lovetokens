@@ -18,3 +18,9 @@ export interface PageHeaderProps {
 export interface LabelsProps {
   labels: string[];
 }
+
+export interface CategoryButtonProps {
+  category: string;
+  selected: boolean;
+  onClick: () => void;
+}
