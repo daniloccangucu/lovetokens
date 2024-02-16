@@ -5,7 +5,7 @@ import { SerializedError } from "@reduxjs/toolkit";
 export interface DataLoaderProps {
   isLoading: boolean;
   error: FetchBaseQueryError | SerializedError | undefined;
-  data: LoveToken[];
+  data: LoveToken[] | LoveToken | undefined;
   emptyMessage: string;
   render: () => React.JSX.Element;
 }

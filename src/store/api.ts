@@ -11,8 +11,14 @@ export const loveTokenApi = createApi({
     fetchLoveTokens: builder.query<LoveToken[], void>({
       query: () => "love-tokens",
     }),
+    fetchLoveTokenByNumber: builder.query<LoveToken, string>({
+      query: (tokenNumber) => `love-tokens/${tokenNumber}`,
+    }),
   }),
 });
 
-export const { useFetchFeaturedLoveTokensQuery, useFetchLoveTokensQuery } =
-  loveTokenApi;
+export const {
+  useFetchFeaturedLoveTokensQuery,
+  useFetchLoveTokensQuery,
+  useFetchLoveTokenByNumberQuery,
+} = loveTokenApi;

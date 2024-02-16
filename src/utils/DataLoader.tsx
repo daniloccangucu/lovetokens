@@ -10,7 +10,7 @@ function DataLoader({ isLoading, error, data, emptyMessage, render }: DataLoader
         return <h2>Error: {getErrorMessage(error)}</h2>;
     }
 
-    if (!data || data.length === 0) {
+    if (!data || (Array.isArray(data) && data.length === 0)) {
         return <h2>{emptyMessage}</h2>;
     }
 

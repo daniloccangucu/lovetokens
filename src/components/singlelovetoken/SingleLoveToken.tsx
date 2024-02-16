@@ -1,22 +1,43 @@
+import { useParams } from "react-router-dom";
+
 import { LoveToken } from "../../models/LoveToken"
+import { useFetchLoveTokenByNumberQuery } from "../../store/api"
+import DataLoader from "../../utils/DataLoader"
 import CallToAction from "../calltoaction/CallToAction"
 import PageHeader from "../pageheader/PageHeader"
-import LoveLabelsDisplay from "./LabelsDisplay"
-import LovePhraseDisplay from "./LargePhraseDisplay"
+import LabelsDisplay from "./LabelsDisplay"
+import LargePhraseDisplay from "./LargePhraseDisplay"
 
 
-function SingleLoveToken(loveToken: LoveToken) {
+function SingleLoveToken() {
+    const { tokenNumber } = useParams();
+    const { data: loveToken, isLoading, error } = useFetchLoveTokenByNumberQuery(tokenNumber!);
+
     return (
         <section className="p-4">
-            <PageHeader
-                title="Love Token #1"
-                subtitle="created at 02.02.2024"
+            <DataLoader
+                isLoading={isLoading}
+                error={error}
+                data={loveToken}
+                emptyMessage={`Love Token number #${tokenNumber} doesn't exist!`}
+                render={() => {
+                    const typedLoveToken = loveToken as LoveToken;
+
+                    return (
+                        <>
+                            <PageHeader
+                                title={`Love Token #${loveToken!.tokenNumber}`}
+                                subtitle={`created at ${loveToken!.creationDate}`}
+                            />
+                            <article className="mt-3">
+                                <LargePhraseDisplay {...typedLoveToken} /><br />
+                                <LabelsDisplay labels={typedLoveToken.labels} />
+                            </article>
+                            <CallToAction />
+                        </>
+                    )
+                }}
             />
-            <article className="mt-3">
-                <LovePhraseDisplay {...loveToken} /><br />
-                <LoveLabelsDisplay labels={loveToken.labels} />
-            </article>
-            <CallToAction />
         </section>
     )
 }
