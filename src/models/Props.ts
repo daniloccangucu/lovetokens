@@ -9,3 +9,12 @@ export interface DataLoaderProps {
   emptyMessage: string;
   render: () => React.JSX.Element;
 }
+
+export interface PageHeaderProps {
+  title: string;
+  subtitle: string;
+}
+
+export interface LabelsProps {
+  labels: string[];
+}

@@ -7,4 +7,5 @@ export interface LoveToken {
     userName: string;
     userId: string;
   };
+  tokenNumber: number;
 }
