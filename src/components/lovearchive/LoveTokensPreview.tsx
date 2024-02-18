@@ -1,6 +1,6 @@
 import { LoveToken } from "../../models/LoveToken"
 import SmallPhraseDisplay from "./SmallPhraseDisplay"
-import LargeCategoryButton from "./CategoryButton"
+import CategoryButton from "./CategoryButton"
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../models/Types";
 import { toggleCategory } from "../../store/categoriesSlice";
@@ -26,7 +26,7 @@ function LoveTokensPreview({ loveTokens }: { loveTokens: LoveToken[] }) {
                     </a>
                     <div className="mt-2">
                         {loveToken.labels.map((category: string) => (
-                            <LargeCategoryButton
+                            <CategoryButton
                                 key={`${category}-${loveToken.tokenNumber}`}
                                 category={category}
                                 selected={selectedCategories.includes(category)}
