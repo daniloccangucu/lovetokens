@@ -1,4 +1,4 @@
-import { PageHeaderProps } from "../../models/Props";
+import { PageHeaderProps } from "../../models/Types";
 
 function PageHeader(props: PageHeaderProps) {
     const { title, subtitle } = props;
