@@ -1,6 +1,6 @@
-import { LabelsProps } from "../../models/Props";
+import { LabelsProps } from "../../models/Types";
 
-function LoveLabelsDisplay({ labels }: LabelsProps) {
+function CategoryDisplay({ labels }: LabelsProps) {
     return (
         <>
             {labels.map((label, index) => (
@@ -12,4 +12,4 @@ function LoveLabelsDisplay({ labels }: LabelsProps) {
     );
 }
 
-export default LoveLabelsDisplay;
+export default CategoryDisplay;

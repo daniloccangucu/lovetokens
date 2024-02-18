@@ -4,10 +4,9 @@ import { LoveToken } from "../../models/LoveToken"
 import { useFetchLoveTokenByNumberQuery } from "../../store/api"
 import DataLoader from "../../utils/DataLoader"
 import CallToAction from "../calltoaction/CallToAction"
-import PageHeader from "../pageheader/PageHeader"
-import LabelsDisplay from "./LabelsDisplay"
+import PageHeader from "../headers/PageHeader"
 import LargePhraseDisplay from "./LargePhraseDisplay"
-
+import CategoryDisplay from "./CategoryDisplay";
 
 function SingleLoveToken() {
     const { tokenNumber } = useParams();
@@ -31,7 +30,7 @@ function SingleLoveToken() {
                             />
                             <article className="mt-3">
                                 <LargePhraseDisplay {...typedLoveToken} /><br />
-                                <LabelsDisplay labels={typedLoveToken.labels} />
+                                <CategoryDisplay labels={typedLoveToken.labels} />
                             </article>
                             <CallToAction />
                         </>
