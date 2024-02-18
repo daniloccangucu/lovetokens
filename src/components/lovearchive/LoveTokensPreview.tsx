@@ -4,6 +4,7 @@ import CategoryButton from "./CategoryButton"
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../models/Types";
 import { toggleCategory } from "../../store/categoriesSlice";
+import CreationDisplay from "./CreationDisplay";
 
 
 function LoveTokensPreview({ loveTokens }: { loveTokens: LoveToken[] }) {
@@ -24,6 +25,10 @@ function LoveTokensPreview({ loveTokens }: { loveTokens: LoveToken[] }) {
                     <a href={`/archive/${loveToken.tokenNumber}`}>
                         <SmallPhraseDisplay {...loveToken} />
                     </a>
+                    <CreationDisplay
+                        creationDate={loveToken.creationDate}
+                        size="small"
+                    />
                     <div className="mt-2">
                         {loveToken.labels.map((category: string) => (
                             <CategoryButton

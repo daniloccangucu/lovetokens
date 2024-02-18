@@ -7,6 +7,7 @@ import CallToAction from "../calltoaction/CallToAction"
 import PageHeader from "../headers/PageHeader"
 import LargePhraseDisplay from "./LargePhraseDisplay"
 import CategoryDisplay from "./CategoryDisplay";
+import CreationDisplay from "../lovearchive/CreationDisplay";
 
 function SingleLoveToken() {
     const { tokenNumber } = useParams();
@@ -26,7 +27,11 @@ function SingleLoveToken() {
                         <>
                             <PageHeader
                                 title={`Love Token #${loveToken!.tokenNumber}`}
-                                subtitle={`created at ${loveToken!.creationDate}`}
+                                subtitle=""
+                            />
+                            <CreationDisplay
+                                creationDate={loveToken!.creationDate}
+                                size="large"
                             />
                             <article className="mt-3">
                                 <LargePhraseDisplay {...typedLoveToken} /><br />

@@ -35,6 +35,11 @@ export interface CategoriesState {
   selectedCategories: string[];
 }
 
+export interface SortState {
+  sortBy: string;
+  sortOrder: "asc" | "desc";
+}
+
 export interface SectionLoveTokensPreview extends CategoriesState {}
 
 export interface CategoriesSectionProps extends CategoriesState {
@@ -43,4 +48,5 @@ export interface CategoriesSectionProps extends CategoriesState {
 
 export interface RootState {
   categories: CategoriesState;
+  creationSort: SortState;
 }

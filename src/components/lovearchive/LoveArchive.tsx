@@ -8,6 +8,7 @@ import CallToAction from "../calltoaction/CallToAction";
 import CategoriesSection from "./CategoriesSection";
 import { toggleCategory } from "../../store/categoriesSlice";
 import LoveTokensPreviewSection from "./LoveTokensPreviewSection";
+import CreationSortInput from "./CreationSortInput";
 
 function LoveTokens() {
     const selectedCategories = useSelector((state: RootState) => state.categories.selectedCategories);
@@ -34,8 +35,9 @@ function LoveTokens() {
                 selectedCategories={selectedCategories}
                 handleCategorySelect={handleCategorySelect}
             />
+            <CreationSortInput />
             <LoveTokensPreviewSection
-                selectedCategories={selectedCategories} 
+                selectedCategories={selectedCategories}
             />
         </section>
     )
