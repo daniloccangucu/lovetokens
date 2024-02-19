@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSortOrder } from '../../store/creationSortSlice';
-import { RootState } from '../../models/Types';
+import { RootState, SortSettings } from '../../models/Types';
 
 const CreationSortInput = () => {
     const dispatch = useDispatch();
@@ -9,7 +9,10 @@ const CreationSortInput = () => {
 
     const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newSortOrder = e.target.value;
-        dispatch(setSortOrder(newSortOrder));
+        const sortSettings: SortSettings = {
+            sortOrder: newSortOrder as "newest" | "oldest"
+        };
+        dispatch(setSortOrder(sortSettings));
     };
 
     return (

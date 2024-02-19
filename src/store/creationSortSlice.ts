@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState, SortSettings } from "../models/Types";
 
 const initialState: SortSettings = {
@@ -9,8 +9,8 @@ const creationSortSlice = createSlice({
   name: "creationSort",
   initialState,
   reducers: {
-    setSortOrder(state, action) {
-      state.sortOrder = action.payload;
+    setSortOrder(state, action: PayloadAction<SortSettings>) {
+      state.sortOrder = action.payload.sortOrder;
     },
   },
 });
