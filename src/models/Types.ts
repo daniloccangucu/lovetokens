@@ -50,3 +50,7 @@ export interface RootState {
   categories: CategoriesState;
   creationSort: SortState;
 }
+
+export interface SortSettings {
+  sortOrder: "newest" | "oldest";
+}

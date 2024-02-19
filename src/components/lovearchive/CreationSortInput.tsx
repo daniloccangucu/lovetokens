@@ -21,8 +21,8 @@ const CreationSortInput = () => {
                 onChange={handleSortChange}
                 className="text--ce-soir border-b border-violet-600 text-lg outline-none"
             >
-                <option value="asc">Ascending</option>
-                <option value="desc">Descending</option>
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
             </select>
         </div>
     );

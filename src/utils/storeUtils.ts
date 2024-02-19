@@ -1,5 +1,6 @@
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { LoveToken } from "../models/LoveToken";
 
 export function getErrorMessage(
   error: FetchBaseQueryError | SerializedError
@@ -12,3 +13,16 @@ export function getErrorMessage(
     return "Unknown error occurred.";
   }
 }
+
+export const sortLoveTokens = (loveTokens: LoveToken[], sortOrder: string) => {
+  return [...loveTokens].sort((a, b) => {
+    const dateA = new Date(a.creationDate);
+    const dateB = new Date(b.creationDate);
+
+    return sortOrder === "oldest"
+      ? dateA.getTime() - dateB.getTime()
+      : sortOrder === "newest"
+      ? dateB.getTime() - dateA.getTime()
+      : 0;
+  });
+};
