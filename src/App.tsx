@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 
-import Home from "./components/home/Home";
+import Home from "./pages/Home";
 import NavBar from "./components/navbar/NavBar";
 import "./styles/styles.scss";
-import LoveTokens from "./components/lovearchive/LoveArchive";
-import SingleLoveToken from "./components/singlelovetoken/SingleLoveToken";
+import LoveTokens from "./pages/LoveArchive";
+import SingleLoveToken from "./pages/SingleLoveToken";
 
 function App() {
   return <div className="App">

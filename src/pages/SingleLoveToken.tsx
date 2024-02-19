@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
 
-import { LoveToken } from "../../models/LoveToken"
-import { useFetchLoveTokenByNumberQuery } from "../../store/api"
-import DataLoader from "../../utils/DataLoader"
-import CallToAction from "../calltoaction/CallToAction"
-import PageHeader from "../headers/PageHeader"
-import LargePhraseDisplay from "./LargePhraseDisplay"
-import CategoryDisplay from "./CategoryDisplay";
-import CreationDisplay from "../lovearchive/CreationDisplay";
+import { LoveToken } from "../models/LoveToken"
+import { useFetchLoveTokenByNumberQuery } from "../store/api"
+import DataLoader from "../utils/DataLoader"
+import CallToAction from "../components/calltoaction/CallToAction"
+import PageHeader from "../components/headers/PageHeader"
+import LargePhraseDisplay from "../components/singlelovetoken/LargePhraseDisplay"
+import CategoryDisplay from "../components/singlelovetoken/CategoryDisplay";
+import CreationDisplay from "../components/lovearchive/CreationDisplay";
 
 function SingleLoveToken() {
     const { tokenNumber } = useParams();

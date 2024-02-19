@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { useFetchLoveTokensQuery } from "../../store/api";
-import { RootState } from "../../models/Types";
-import PageHeader from "../headers/PageHeader";
-import CallToAction from "../calltoaction/CallToAction";
-import CategoriesSection from "./CategoriesSection";
-import { toggleCategory } from "../../store/categoriesSlice";
-import LoveTokensPreviewSection from "./LoveTokensPreviewSection";
-import CreationSortInput from "./CreationSortInput";
+import { useFetchLoveTokensQuery } from "../store/api";
+import { RootState } from "../models/Types";
+import PageHeader from "../components/headers/PageHeader";
+import CallToAction from "../components/calltoaction/CallToAction";
+import CategoriesSection from "../components/lovearchive/CategoriesSection";
+import { toggleCategory } from "../store/categoriesSlice";
+import LoveTokensPreviewSection from "../components/lovearchive/LoveTokensPreviewSection";
+import CreationSortInput from "../components/lovearchive/CreationSortInput";
 
 function LoveTokens() {
     const selectedCategories = useSelector((state: RootState) => state.categories.selectedCategories);
