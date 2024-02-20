@@ -1,6 +1,8 @@
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+
 import { LoveToken } from "../models/LoveToken";
+import { SubmitParams } from "../models/Types";
 
 export function getErrorMessage(
   error: FetchBaseQueryError | SerializedError
@@ -25,4 +27,36 @@ export const sortLoveTokens = (loveTokens: LoveToken[], sortOrder: string) => {
       ? dateB.getTime() - dateA.getTime()
       : 0;
   });
+};
+
+export const handleFormSubmission = async (
+  {
+    callback,
+    setNotification,
+    successMessage,
+    errorMessage,
+    clearNotification,
+  }: SubmitParams,
+  data: any
+) => {
+  try {
+    const result = await callback(data);
+    if (result.error) {
+      if (result.error.data.error) {
+        throw new Error(result.error.data.error);
+      }
+      throw new Error(result.error);
+    }
+    setNotification({ message: successMessage, isSuccess: true });
+    let timeoutId: NodeJS.Timeout = setTimeout(() => {
+      clearNotification();
+    }, 4000);
+    clearTimeout(timeoutId);
+  } catch (err) {
+    const errorObject = err as Error;
+    setNotification({
+      message: errorObject.message || errorMessage,
+      isSuccess: false,
+    });
+  }
 };

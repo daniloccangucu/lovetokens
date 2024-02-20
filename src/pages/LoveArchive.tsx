@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { useFetchLoveTokensQuery } from "../store/api";
+import { useFetchLoveTokensQuery } from "../store/loveTokensApi";
 import { RootState } from "../models/Types";
 import PageHeader from "../components/headers/PageHeader";
 import CallToAction from "../components/calltoaction/CallToAction";

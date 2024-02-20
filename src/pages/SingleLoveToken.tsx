@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 
 import { LoveToken } from "../models/LoveToken"
-import { useFetchLoveTokenByNumberQuery } from "../store/api"
+import { useFetchLoveTokenByNumberQuery } from "../store/loveTokensApi"
 import DataLoader from "../utils/DataLoader"
 import CallToAction from "../components/calltoaction/CallToAction"
 import PageHeader from "../components/headers/PageHeader"

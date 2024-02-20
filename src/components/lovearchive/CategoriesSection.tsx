@@ -2,7 +2,7 @@ import CategoryButton from './CategoryButton';
 import { Category } from "../../models/Category";
 import DataLoader from "../../utils/DataLoader";
 import HeaderTwo from "../headers/HeaderTwo";
-import { useFetchCategoriesQuery } from '../../store/api';
+import { useFetchCategoriesQuery } from '../../store/loveTokensApi';
 import { CategoriesSectionProps } from '../../models/Types';
 
 function CategoriesSection({ selectedCategories, handleCategorySelect }: CategoriesSectionProps) {

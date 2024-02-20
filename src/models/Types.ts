@@ -1,7 +1,24 @@
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import {
+  BaseQueryFn,
+  FetchArgs,
+  FetchBaseQueryError,
+  FetchBaseQueryMeta,
+  MutationDefinition,
+} from "@reduxjs/toolkit/query";
 import { LoveToken } from "./LoveToken";
-import { SerializedError } from "@reduxjs/toolkit";
+import {
+  ActionCreatorWithPayload,
+  ActionCreatorWithoutPayload,
+  SerializedError,
+} from "@reduxjs/toolkit";
 import { Category } from "./Category";
+import { ReactNode } from "react";
+import {
+  FieldValues,
+  UseFormHandleSubmit,
+  UseFormRegister,
+} from "react-hook-form";
+import { MutationTrigger } from "@reduxjs/toolkit/dist/query/react/buildHooks";
 
 export interface DataLoaderProps {
   isLoading: boolean;
@@ -31,6 +48,63 @@ export interface CategoryButtonProps {
   size: string;
 }
 
+export interface FormProps {
+  onSubmit: UseFormHandleSubmit<FieldValues, FieldValues>;
+  children: ReactNode;
+  isLoading: boolean;
+  callback: MutationTrigger<
+    MutationDefinition<
+      any,
+      BaseQueryFn<
+        string | FetchArgs,
+        unknown,
+        FetchBaseQueryError,
+        {},
+        FetchBaseQueryMeta
+      >,
+      never,
+      any,
+      "userApi"
+    >
+  >;
+  successMessage: string;
+  errorMessage: string;
+  setNotification: ActionCreatorWithPayload<{
+    message: string;
+    isSuccess: boolean;
+  }>;
+  clearNotification: ClearNotificationAction;
+}
+
+type ClearNotificationAction =
+  | ActionCreatorWithoutPayload<"notification/clearRegisterNotification">
+  | ActionCreatorWithoutPayload<"notification/clearLoginNotification">;
+
+export interface InputFieldProps {
+  id: string;
+  label: string;
+  type: string;
+  register: UseFormRegister<FieldValues>;
+  required: boolean;
+  errors: FieldValues;
+}
+
+export interface FormNotificationProps {
+  message: string;
+  isSuccess: boolean;
+}
+
+export interface SubmitParams {
+  callback: (data: any) => Promise<any>;
+  setNotification: (notification: {
+    message: string;
+    isSuccess: boolean;
+  }) => void;
+  successMessage: string;
+  errorMessage: string;
+  clearNotification: () => void;
+}
+
 export interface CategoriesState {
   selectedCategories: string[];
 }
@@ -38,6 +112,17 @@ export interface CategoriesState {
 export interface SortState {
   sortBy: string;
   sortOrder: "asc" | "desc";
+}
+
+export interface NotificationState {
+  register: {
+    message: string | null;
+    isSuccess: boolean;
+  };
+  login: {
+    message: string | null;
+    isSuccess: boolean;
+  };
 }
 
 export interface SectionLoveTokensPreview extends CategoriesState {}
@@ -49,6 +134,7 @@ export interface CategoriesSectionProps extends CategoriesState {
 export interface RootState {
   categories: CategoriesState;
   creationSort: SortState;
+  notification: NotificationState;
 }
 
 export interface SortSettings {

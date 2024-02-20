@@ -5,6 +5,7 @@ import NavBar from "./components/navbar/NavBar";
 import "./styles/styles.scss";
 import LoveTokens from "./pages/LoveArchive";
 import SingleLoveToken from "./pages/SingleLoveToken";
+import Register from "./pages/Register";
 
 function App() {
   return <div className="App">
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/archive" element={<LoveTokens />} />
         <Route path="/archive/:tokenNumber" element={<SingleLoveToken />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </main>
   </div>;

@@ -21,6 +21,9 @@
   &--ce-soir {
     color: $ce-soir;
   }
+  &--darker-ce-soir {
+    color: $darker-ce-soir
+  }
 }
 
 .background {
@@ -30,6 +33,32 @@
   &--lighter-ce-soir {
     background-color: $lighter-ce-soir;
   }
+  &--ce-soir {
+    background-color: $ce-soir;
+    &:hover {
+      background-color: $darker-ce-soir;
+    }
+  }
+}
+
+.focus-ring-ce-soir {
+  &.focus {
+    border-color: $darker-ce-soir;
+    box-shadow: 0 0 0 3px $darker-ce-soir;
+  }
+}
+
+.border-ce-soir {
+  border-color: $darker-ce-soir;
+}
+
+.focus-ring-ce-soir {
+  border-color: $darker-ce-soir;
+  box-shadow: 0 0 0 3px $darker-ce-soir;
+}
+
+.border-ce-soir {
+  border-color: $darker-ce-soir;
 }
 
 .label {
@@ -42,5 +71,18 @@
   &--ce-soir {
     border-radius: 5px;
     border-color: $ce-soir;
+  }
+}
+
+.notification {
+  border-radius: $notification-border-radius;
+  color: white;
+  line-height: $notification-line-height;
+  padding: $notification-padding;
+  &--success {
+    background-color: $success-bg-color;
+  }
+  &--error {
+    background-color: $error-bg-color;
   }
 }
