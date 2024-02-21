@@ -3,11 +3,11 @@ import { NotificationState } from "../models/Types";
 
 const initialState: NotificationState = {
   register: {
-    message: null,
+    message: "",
     isSuccess: false,
   },
   login: {
-    message: null,
+    message: "",
     isSuccess: false,
   },
 };
@@ -24,7 +24,7 @@ const notificationSlice = createSlice({
       state.register.isSuccess = action.payload.isSuccess;
     },
     clearRegisterNotification(state) {
-      state.register.message = null;
+      state.register.message = "";
       state.register.isSuccess = false;
     },
     setLoginNotification(
@@ -35,7 +35,7 @@ const notificationSlice = createSlice({
       state.login.isSuccess = action.payload.isSuccess;
     },
     clearLoginNotification(state) {
-      state.login.message = null;
+      state.login.message = "";
       state.login.isSuccess = false;
     },
   },

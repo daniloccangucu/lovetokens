@@ -11,7 +11,26 @@ export const userApi = createApi({
         body: userData,
       }),
     }),
+    loginUser: builder.mutation({
+      query: (userData) => ({
+        url: "/login",
+        method: "POST",
+        body: userData,
+      }),
+    }),
+    checkAuth: builder.query({
+      query: (token) => ({
+        url: "/check-auth",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useRegisterUserMutation } = userApi;
+export const {
+  useRegisterUserMutation,
+  useLoginUserMutation,
+  useCheckAuthQuery,
+} = userApi;

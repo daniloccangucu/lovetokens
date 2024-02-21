@@ -24,7 +24,7 @@ export interface DataLoaderProps {
   isLoading: boolean;
   error: FetchBaseQueryError | SerializedError | undefined;
   data: LoveToken[] | LoveToken | Category[] | undefined;
-  emptyMessage: string;
+  emptyMessage?: string;
   render: () => React.JSX.Element;
 }
 
@@ -125,6 +125,15 @@ export interface NotificationState {
   };
 }
 
+export interface Notification {
+  message: string | null;
+  isSuccess: boolean;
+}
+
+export interface AuthState {
+  updateAuthStatus: boolean;
+}
+
 export interface SectionLoveTokensPreview extends CategoriesState {}
 
 export interface CategoriesSectionProps extends CategoriesState {
@@ -135,6 +144,7 @@ export interface RootState {
   categories: CategoriesState;
   creationSort: SortState;
   notification: NotificationState;
+  auth: AuthState;
 }
 
 export interface SortSettings {

@@ -6,6 +6,7 @@ import { userApi } from "./userApi";
 import categoriesReducer from "./categoriesSlice";
 import creationSortReducer from "./creationSortSlice";
 import notificationReducer from "./notificationSlice";
+import authReducer from "./authSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     categories: categoriesReducer,
     creationSort: creationSortReducer,
     notification: notificationReducer,
+    auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(loveTokenApi.middleware, userApi.middleware),

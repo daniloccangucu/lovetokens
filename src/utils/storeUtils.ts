@@ -33,9 +33,9 @@ export const handleFormSubmission = async (
   {
     callback,
     setNotification,
+    clearNotification,
     successMessage,
     errorMessage,
-    clearNotification,
   }: SubmitParams,
   data: any
 ) => {
@@ -47,16 +47,44 @@ export const handleFormSubmission = async (
       }
       throw new Error(result.error);
     }
+    if (result.data.token) {
+      localStorage.setItem("token", result.data.token);
+    }
     setNotification({ message: successMessage, isSuccess: true });
-    let timeoutId: NodeJS.Timeout = setTimeout(() => {
+    setTimeout(() => {
       clearNotification();
-    }, 4000);
-    clearTimeout(timeoutId);
+    }, 1000);
   } catch (err) {
     const errorObject = err as Error;
     setNotification({
       message: errorObject.message || errorMessage,
       isSuccess: false,
     });
+    setTimeout(() => {
+      clearNotification();
+    }, 1000);
   }
+};
+
+export const setUserInLocalStorage = (userId: string, role: string) => {
+  localStorage.setItem("LTuserId", userId);
+  localStorage.setItem("LTuserRole", role);
+};
+
+export const removeUserFromLocalStorage = () => {
+  localStorage.removeItem("LTuserId");
+  localStorage.removeItem("LTuserRole");
+  localStorage.removeItem("token");
+};
+
+export const isUserLoggedIn = () => {
+  const userId = localStorage.getItem("LTuserId");
+  return userId !== null && userId !== undefined;
+};
+
+export const getUserFromLocalStorage = () => {
+  return {
+    id: localStorage.getItem("LTuserId"),
+    role: localStorage.getItem("LTuserRole"),
+  };
 };

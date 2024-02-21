@@ -5,7 +5,6 @@ import PageHeader from '../components/headers/PageHeader';
 import InputField from '../components/register/InputField';
 import Form from '../components/register/Form';
 import { useRegisterUserMutation } from '../store/userApi';
-import FormNotification from '../components/register/FormNotification';
 import { RootState } from '../models/Types';
 import {
     clearRegisterNotification,
@@ -13,25 +12,25 @@ import {
 } from '../store/notificationSlice';
 import { useNavigate } from 'react-router-dom';
 import useTimeout from '../utils/useTimeout';
+import useNotificationToast from '../utils/useNotificationToast';
 
 function Register() {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [registerUser, { isLoading }] = useRegisterUserMutation();
     const registerNotification = useSelector((state: RootState) => state.notification.register);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useTimeout(() => {
         if (registerNotification.isSuccess) {
-            navigate("/archive");
+            navigate("/authenticate");
         }
     }, 4000);
+
+    useNotificationToast(registerNotification);
 
     return (
         <section className="flex-row p-4">
             <PageHeader title="Register" subtitle="Welcome to our beloved community!" />
-            {registerNotification.message && (
-                <FormNotification message={registerNotification.message} isSuccess={registerNotification.isSuccess} />
-            )}
             <Form
                 onSubmit={handleSubmit}
                 isLoading={isLoading}
