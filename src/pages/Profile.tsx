@@ -2,7 +2,7 @@ import { getUserFromLocalStorage, isUserLoggedIn } from "../utils/storeUtils";
 
 const Profile = () => {
     if (!isUserLoggedIn()) {
-        <p>Login to see your profile</p>
+        return <p>Login to see your profile</p>
     }
 
     const user = getUserFromLocalStorage()
