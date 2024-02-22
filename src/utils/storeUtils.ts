@@ -53,7 +53,7 @@ export const handleFormSubmission = async (
     setNotification({ message: successMessage, isSuccess: true });
     setTimeout(() => {
       clearNotification();
-    }, 1000);
+    }, 5000);
   } catch (err) {
     const errorObject = err as Error;
     setNotification({
@@ -62,7 +62,7 @@ export const handleFormSubmission = async (
     });
     setTimeout(() => {
       clearNotification();
-    }, 1000);
+    }, 5000);
   }
 };
 

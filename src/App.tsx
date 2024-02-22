@@ -15,7 +15,7 @@ import Login from "./pages/Login";
 
 function App() {
   return <div className="App">
-    <ToastContainer autoClose={4500} position="top-center" transition={Slide} />
+    <ToastContainer autoClose={4000} position="top-center" transition={Slide} />
     <NavBar />
     <main>
       <Routes>

@@ -24,7 +24,7 @@ function Register() {
         if (registerNotification.isSuccess) {
             navigate("/authenticate");
         }
-    }, 4000);
+    }, 4500);
 
     useNotificationToast(registerNotification);
 

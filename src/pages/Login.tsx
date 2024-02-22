@@ -24,7 +24,7 @@ function Login() {
         if (loginNotification.isSuccess) {
             navigate("/authenticate");
         }
-    }, 5000);
+    }, 4500);
 
     useNotificationToast(loginNotification);
 
