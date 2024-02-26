@@ -94,6 +94,15 @@ export interface FormNotificationProps {
   isSuccess: boolean;
 }
 
+export interface NavLinkProps {
+  href: string;
+  text: string;
+}
+
+export interface NavSectionProp {
+  loggedUser: boolean;
+}
+
 export interface SubmitParams {
   callback: (data: any) => Promise<any>;
   setNotification: (notification: {
