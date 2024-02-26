@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
 import Logout from "./pages/Logout";
 import Login from "./pages/Login";
+import AppreciationAtelier from "./pages/AppreciationAtelier";
 
 function App() {
   return <div className="App">
@@ -27,6 +28,7 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/authenticate" element={<Auth />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/atelier" element={<AppreciationAtelier />} />
       </Routes>
     </main>
   </div>;

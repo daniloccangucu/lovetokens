@@ -9,7 +9,7 @@ const Profile = () => {
 
     return (
         <>
-            <p>Hi, {user.id}</p>
+            <p>Hi, {user.userId}</p>
         </>
     );
 };

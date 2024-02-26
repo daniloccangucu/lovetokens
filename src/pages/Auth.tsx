@@ -13,7 +13,8 @@ function Auth() {
 
     useEffect(() => {
         if (user) {
-            setUserInLocalStorage(user.userId, user.role)
+            console.log("user", user)
+            setUserInLocalStorage(user.userId, user.role, user.userName)
             setTimeout(() => {
                 navigate("/profile")
             }, 0)

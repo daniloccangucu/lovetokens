@@ -52,41 +52,69 @@ export interface FormProps {
   onSubmit: UseFormHandleSubmit<FieldValues, FieldValues>;
   children: ReactNode;
   isLoading: boolean;
-  callback: MutationTrigger<
-    MutationDefinition<
-      any,
-      BaseQueryFn<
-        string | FetchArgs,
-        unknown,
-        FetchBaseQueryError,
-        {},
-        FetchBaseQueryMeta
-      >,
-      never,
-      any,
-      "userApi"
-    >
-  >;
+  callback:
+    | MutationTrigger<
+        MutationDefinition<
+          any,
+          BaseQueryFn<
+            string | FetchArgs,
+            unknown,
+            FetchBaseQueryError,
+            {},
+            FetchBaseQueryMeta
+          >,
+          never,
+          any,
+          "userApi"
+        >
+      >
+    | MutationTrigger<
+        MutationDefinition<
+          any,
+          BaseQueryFn<
+            string | FetchArgs,
+            unknown,
+            FetchBaseQueryError,
+            {},
+            FetchBaseQueryMeta
+          >,
+          never,
+          any,
+          "loveTokensApi"
+        >
+      >;
   successMessage: string;
   errorMessage: string;
-  setNotification: ActionCreatorWithPayload<{
-    message: string;
-    isSuccess: boolean;
-  }>;
+  setNotification:
+    | ActionCreatorWithPayload<{
+        message: string;
+        isSuccess: boolean;
+      }>
+    | ActionCreatorWithPayload<{
+        message: string;
+        isSuccess: boolean;
+        uri?: string;
+      }>;
   clearNotification: ClearNotificationAction;
+  user?: {
+    userName: string | null;
+    userId: string | null;
+  };
 }
 
 type ClearNotificationAction =
   | ActionCreatorWithoutPayload<"notification/clearRegisterNotification">
-  | ActionCreatorWithoutPayload<"notification/clearLoginNotification">;
+  | ActionCreatorWithoutPayload<"notification/clearLoginNotification">
+  | ActionCreatorWithoutPayload<"notification/clearCreateLoveTokenNotification">;
 
 export interface InputFieldProps {
   id: string;
   label: string;
-  type: string;
+  type?: string;
   register: UseFormRegister<FieldValues>;
   required: boolean;
   errors: FieldValues;
+  options?: string[];
 }
 
 export interface FormNotificationProps {
@@ -108,10 +136,15 @@ export interface SubmitParams {
   setNotification: (notification: {
     message: string;
     isSuccess: boolean;
+    uri?: string;
   }) => void;
   successMessage: string;
   errorMessage: string;
   clearNotification: () => void;
+  user?: {
+    userName: string | null;
+    userId: string | null;
+  };
 }
 
 export interface CategoriesState {
@@ -132,11 +165,17 @@ export interface NotificationState {
     message: string | null;
     isSuccess: boolean;
   };
+  createLoveToken: {
+    message: string | null;
+    isSuccess: boolean;
+    uri?: string;
+  };
 }
 
 export interface Notification {
   message: string | null;
   isSuccess: boolean;
+  uri?: string;
 }
 
 export interface AuthState {

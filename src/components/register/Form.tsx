@@ -11,7 +11,8 @@ const Form = (
         successMessage,
         errorMessage,
         setNotification,
-        clearNotification
+        clearNotification,
+        user
     }: FormProps
 ) => {
     const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const Form = (
             successMessage,
             errorMessage,
             clearNotification: () => dispatch(clearNotification()),
+            user
         }, data);
 
     };

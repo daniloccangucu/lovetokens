@@ -27,6 +27,13 @@ export const loveTokenApi = createApi({
     fetchCategories: builder.query<Category[], void>({
       query: () => "categories",
     }),
+    createLoveToken: builder.mutation<LoveToken, Partial<LoveToken>>({
+      query: (newLoveToken) => ({
+        url: "love-tokens",
+        method: "POST",
+        body: newLoveToken,
+      }),
+    }),
   }),
 });
 
@@ -35,4 +42,5 @@ export const {
   useFetchLoveTokensQuery,
   useFetchLoveTokenByNumberQuery,
   useFetchCategoriesQuery,
+  useCreateLoveTokenMutation,
 } = loveTokenApi;

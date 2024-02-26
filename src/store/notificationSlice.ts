@@ -10,6 +10,11 @@ const initialState: NotificationState = {
     message: "",
     isSuccess: false,
   },
+  createLoveToken: {
+    message: "",
+    isSuccess: false,
+    uri: "",
+  },
 };
 
 const notificationSlice = createSlice({
@@ -38,6 +43,23 @@ const notificationSlice = createSlice({
       state.login.message = "";
       state.login.isSuccess = false;
     },
+    setCreateLoveTokenNotification(
+      state,
+      action: PayloadAction<{
+        message: string;
+        isSuccess: boolean;
+        uri?: string;
+      }>
+    ) {
+      state.createLoveToken.message = action.payload.message;
+      state.createLoveToken.isSuccess = action.payload.isSuccess;
+      state.createLoveToken.uri = action.payload.uri;
+    },
+    clearCreateLoveTokenNotification(state) {
+      state.createLoveToken.message = "";
+      state.createLoveToken.isSuccess = false;
+      state.createLoveToken.uri = "";
+    },
   },
 });
 
@@ -46,5 +68,7 @@ export const {
   clearRegisterNotification,
   setLoginNotification,
   clearLoginNotification,
+  setCreateLoveTokenNotification,
+  clearCreateLoveTokenNotification,
 } = notificationSlice.actions;
 export default notificationSlice.reducer;

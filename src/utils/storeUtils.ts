@@ -36,10 +36,20 @@ export const handleFormSubmission = async (
     clearNotification,
     successMessage,
     errorMessage,
+    user,
   }: SubmitParams,
   data: any
 ) => {
   try {
+    if (user) {
+      data = { ...data, createdBy: { ...user } };
+    }
+    if (data.labels) {
+      const selectedLabels = data.labels.filter(
+        (label: boolean | string) => label !== false
+      );
+      data.labels = selectedLabels;
+    }
     const result = await callback(data);
     if (result.error) {
       if (result.error.data.error) {
@@ -50,7 +60,11 @@ export const handleFormSubmission = async (
     if (result.data.token) {
       localStorage.setItem("token", result.data.token);
     }
-    setNotification({ message: successMessage, isSuccess: true });
+    setNotification(
+      result.data.uri
+        ? { message: successMessage, isSuccess: true, uri: result.data.uri }
+        : { message: successMessage, isSuccess: true }
+    );
     setTimeout(() => {
       clearNotification();
     }, 5000);
@@ -66,14 +80,20 @@ export const handleFormSubmission = async (
   }
 };
 
-export const setUserInLocalStorage = (userId: string, role: string) => {
+export const setUserInLocalStorage = (
+  userId: string,
+  role: string,
+  username: string
+) => {
   localStorage.setItem("LTuserId", userId);
   localStorage.setItem("LTuserRole", role);
+  localStorage.setItem("LTuserName", username);
 };
 
 export const removeUserFromLocalStorage = () => {
   localStorage.removeItem("LTuserId");
   localStorage.removeItem("LTuserRole");
+  localStorage.removeItem("LTuserName");
   localStorage.removeItem("token");
 };
 
@@ -84,7 +104,8 @@ export const isUserLoggedIn = () => {
 
 export const getUserFromLocalStorage = () => {
   return {
-    id: localStorage.getItem("LTuserId"),
+    userId: localStorage.getItem("LTuserId"),
     role: localStorage.getItem("LTuserRole"),
+    userName: localStorage.getItem("LTuserName"),
   };
 };
