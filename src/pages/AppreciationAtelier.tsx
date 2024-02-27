@@ -10,7 +10,7 @@ import { getUserFromLocalStorage } from "../utils/storeUtils";
 import useTimeout from "../utils/useTimeout";
 import { useRequireLoggedInUser } from '../utils/useRequireLoggedInUser';
 import CreateLoveToken from '../components/appreciationatelier/CreateLoveToken';
-import ReadLoveTokens from '../components/appreciationatelier/ReadUsersLoveTokens';
+import ReadUsersLoveTokens from '../components/appreciationatelier/ReadUsersLoveTokens';
 
 
 function AppreciationAtelier() {
@@ -45,7 +45,7 @@ function AppreciationAtelier() {
                         subtitle="Create, update, read and delete your Love Tokens"
                     />
                     <CreateLoveToken categories={categories} createdUser={user!} />
-                    <ReadLoveTokens user={user!} />
+                    <ReadUsersLoveTokens user={user!} />
                 </section>
             )}
         />

@@ -4,7 +4,7 @@ import DataLoader from "../../utils/DataLoader";
 import CreationDisplay from "../lovearchive/CreationDisplay";
 import SmallPhraseDisplay from "../lovearchive/SmallPhraseDisplay";
 
-function ReadLoveTokens({ user }: { user: User }) {
+function ReadUsersLoveTokens({ user }: { user: User }) {
     const { data: usersLoveTokens = [], error, isLoading } = useFetchUserLoveTokenQuery({ userId: user.userId, token: user.token });
 
     return (
@@ -35,4 +35,4 @@ function ReadLoveTokens({ user }: { user: User }) {
     );
 }
 
-export default ReadLoveTokens;
+export default ReadUsersLoveTokens;
