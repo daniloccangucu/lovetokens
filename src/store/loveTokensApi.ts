@@ -34,6 +34,17 @@ export const loveTokenApi = createApi({
         body: newLoveToken,
       }),
     }),
+    fetchUserLoveToken: builder.query<
+      LoveToken[],
+      { userId: string | null; token: string | null }
+    >({
+      query: ({ userId, token }) => ({
+        url: `user-love-tokens/${userId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    }),
   }),
 });
 
@@ -43,4 +54,5 @@ export const {
   useFetchLoveTokenByNumberQuery,
   useFetchCategoriesQuery,
   useCreateLoveTokenMutation,
+  useFetchUserLoveTokenQuery,
 } = loveTokenApi;
