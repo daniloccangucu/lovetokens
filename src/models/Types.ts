@@ -28,6 +28,37 @@ export interface DataLoaderProps {
   render: () => React.JSX.Element;
 }
 
+export interface CreateLoveTokenProps {
+  handleSubmit: UseFormHandleSubmit<FieldValues, FieldValues>;
+  isLoading: boolean;
+  createLoveToken: MutationTrigger<
+    MutationDefinition<
+      Partial<LoveToken>,
+      BaseQueryFn<
+        string | FetchArgs,
+        unknown,
+        FetchBaseQueryError,
+        {},
+        FetchBaseQueryMeta
+      >,
+      never,
+      LoveToken,
+      "loveTokensApi"
+    >
+  >;
+  successMessage: string;
+  errorMessage: string;
+  setCreateLoveTokenNotification: ActionCreatorWithPayload<
+    {
+      message: string;
+      isSuccess: boolean;
+      uri?: string | undefined;
+    },
+    "notification/setCreateLoveTokenNotification"
+  >;
+  clearCreateLoveTokenNotification: ActionCreatorWithoutPayload<"notification/clearCreateLoveTokenNotification">;
+}
+
 export interface PageHeaderProps {
   title: string;
   subtitle: string;
