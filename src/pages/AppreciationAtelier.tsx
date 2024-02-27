@@ -15,6 +15,8 @@ import { useCreateLoveTokenMutation, useFetchCategoriesQuery } from '../store/lo
 import DataLoader from "../utils/DataLoader";
 import { getUserFromLocalStorage } from "../utils/storeUtils";
 import useTimeout from "../utils/useTimeout";
+import { useRequireLoggedInUser } from '../utils/useRequireLoggedInUser';
+
 
 function AppreciationAtelier() {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -23,7 +25,6 @@ function AppreciationAtelier() {
     const createLoveTokenNotification = useSelector((state: RootState) => state.notification.createLoveToken);
     const navigate = useNavigate();
     const user = getUserFromLocalStorage();
-    const createdUser = { userId: user.userId, userName: user.userName }
 
     useTimeout(() => {
         if (createLoveTokenNotification.isSuccess && createLoveTokenNotification.uri) {
@@ -33,6 +34,13 @@ function AppreciationAtelier() {
 
     useNotificationToast(createLoveTokenNotification);
 
+    const isLoggedIn = useRequireLoggedInUser(user);
+    if (!isLoggedIn) {
+        return null;
+    }
+
+    const createdUser = { userId: user!.userId, userName: user!.userName }
+
     return (
         <DataLoader
             isLoading={categoriesLoading}
@@ -41,7 +49,10 @@ function AppreciationAtelier() {
             emptyMessage="There are no categories to be displayed"
             render={() => (
                 <section className="p-4">
-                    <PageHeader title="Appreciation Atelier" subtitle="Create, update, read and delete your Love Tokens" />
+                    <PageHeader
+                        title="Appreciation Atelier"
+                        subtitle="Create, update, read and delete your Love Tokens"
+                    />
                     <Form
                         onSubmit={handleSubmit}
                         isLoading={isLoading}
@@ -52,8 +63,22 @@ function AppreciationAtelier() {
                         clearNotification={clearCreateLoveTokenNotification}
                         user={createdUser}
                     >
-                        <InputField id="phrase" label="I feel loved when you" type="text" register={register} required={true} errors={errors} />
-                        <InputField id="labels" label="Categories" register={register} required={true} errors={errors} options={categories.map(category => category.name)} />
+                        <InputField
+                            id="phrase"
+                            label="I feel loved when you"
+                            type="text"
+                            register={register}
+                            required={true}
+                            errors={errors}
+                        />
+                        <InputField
+                            id="labels"
+                            label="Categories"
+                            register={register}
+                            required={true}
+                            errors={errors}
+                            options={categories.map(category => category.name)}
+                        />
                     </Form>
                 </section>
             )}

@@ -1,15 +1,18 @@
-import { getUserFromLocalStorage, isUserLoggedIn } from "../utils/storeUtils";
+import { getUserFromLocalStorage } from "../utils/storeUtils";
+import { useRequireLoggedInUser } from "../utils/useRequireLoggedInUser";
 
 const Profile = () => {
-    if (!isUserLoggedIn()) {
-        return <p>Login to see your profile</p>
-    }
 
     const user = getUserFromLocalStorage()
 
+    const isLoggedIn = useRequireLoggedInUser(user);
+    if (!isLoggedIn) {
+        return null;
+    }
+
     return (
         <>
-            <p>Hi, {user.userId}</p>
+            <p>Hi, {user!.userId}</p>
         </>
     );
 };

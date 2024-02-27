@@ -103,9 +103,19 @@ export const isUserLoggedIn = () => {
 };
 
 export const getUserFromLocalStorage = () => {
+  const userId = localStorage.getItem("LTuserId");
+  const role = localStorage.getItem("LTuserRole");
+  const userName = localStorage.getItem("LTuserName");
+  const token = localStorage.getItem("token");
+
+  if (!userId || !role || !userName || !token) {
+    return null;
+  }
+
   return {
-    userId: localStorage.getItem("LTuserId"),
-    role: localStorage.getItem("LTuserRole"),
-    userName: localStorage.getItem("LTuserName"),
+    userId: userId,
+    role: role,
+    userName: userName,
+    token: token,
   };
 };

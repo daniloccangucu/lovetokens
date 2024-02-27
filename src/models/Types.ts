@@ -178,6 +178,13 @@ export interface Notification {
   uri?: string;
 }
 
+export interface User {
+  userId: string | null;
+  role: string | null;
+  userName: string | null;
+  token: string | null;
+}
+
 export interface AuthState {
   updateAuthStatus: boolean;
 }
