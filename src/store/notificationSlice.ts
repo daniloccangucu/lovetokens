@@ -15,6 +15,10 @@ const initialState: NotificationState = {
     isSuccess: false,
     uri: "",
   },
+  updateLoveToken: {
+    message: "",
+    isSuccess: false,
+  },
 };
 
 const notificationSlice = createSlice({
@@ -60,6 +64,17 @@ const notificationSlice = createSlice({
       state.createLoveToken.isSuccess = false;
       state.createLoveToken.uri = "";
     },
+    setUpdateLoveTokenNotification(
+      state,
+      action: PayloadAction<{ message: string; isSuccess: boolean }>
+    ) {
+      state.updateLoveToken.message = action.payload.message;
+      state.updateLoveToken.isSuccess = action.payload.isSuccess;
+    },
+    clearUpdateLoveTokenNotification(state) {
+      state.updateLoveToken.message = "";
+      state.updateLoveToken.isSuccess = false;
+    },
   },
 });
 
@@ -70,5 +85,7 @@ export const {
   clearLoginNotification,
   setCreateLoveTokenNotification,
   clearCreateLoveTokenNotification,
+  setUpdateLoveTokenNotification,
+  clearUpdateLoveTokenNotification,
 } = notificationSlice.actions;
 export default notificationSlice.reducer;

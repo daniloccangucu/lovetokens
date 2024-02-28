@@ -114,6 +114,7 @@ export interface FormProps {
           "loveTokensApi"
         >
       >;
+  method?: string;
   successMessage: string;
   errorMessage: string;
   setNotification:
@@ -131,12 +132,14 @@ export interface FormProps {
     userName: string | null;
     userId: string | null;
   };
+  tokenNumber?: number;
 }
 
 type ClearNotificationAction =
   | ActionCreatorWithoutPayload<"notification/clearRegisterNotification">
   | ActionCreatorWithoutPayload<"notification/clearLoginNotification">
-  | ActionCreatorWithoutPayload<"notification/clearCreateLoveTokenNotification">;
+  | ActionCreatorWithoutPayload<"notification/clearCreateLoveTokenNotification">
+  | ActionCreatorWithoutPayload<"notification/clearUpdateLoveTokenNotification">;
 
 export interface InputFieldProps {
   id: string;
@@ -146,6 +149,8 @@ export interface InputFieldProps {
   required: boolean;
   errors: FieldValues;
   options?: string[];
+  defaultValue?: string | string[];
+  onExitEditingMode?: () => void;
 }
 
 export interface FormNotificationProps {
@@ -164,6 +169,7 @@ export interface NavSectionProp {
 
 export interface SubmitParams {
   callback: (data: any) => Promise<any>;
+  method?: string;
   setNotification: (notification: {
     message: string;
     isSuccess: boolean;
@@ -172,10 +178,13 @@ export interface SubmitParams {
   successMessage: string;
   errorMessage: string;
   clearNotification: () => void;
-  user?: {
-    userName: string | null;
-    userId: string | null;
-  };
+  user?:
+    | {
+        userName: string | null;
+        userId: string | null;
+      }
+    | User;
+  tokenNumber?: number;
 }
 
 export interface CategoriesState {
@@ -197,6 +206,11 @@ export interface NotificationState {
     isSuccess: boolean;
   };
   createLoveToken: {
+    message: string | null;
+    isSuccess: boolean;
+    uri?: string;
+  };
+  updateLoveToken: {
     message: string | null;
     isSuccess: boolean;
     uri?: string;

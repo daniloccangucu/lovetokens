@@ -12,10 +12,11 @@ import { useRequireLoggedInUser } from '../utils/useRequireLoggedInUser';
 import CreateLoveToken from '../components/appreciationatelier/CreateLoveToken';
 import ReadUsersLoveTokens from '../components/appreciationatelier/ReadUsersLoveTokens';
 
-
 function AppreciationAtelier() {
     const { data: categories = [], isLoading: categoriesLoading, error: categoriesError } = useFetchCategoriesQuery();
     const createLoveTokenNotification = useSelector((state: RootState) => state.notification.createLoveToken);
+    const updateLoveTokenNotification = useSelector((state: RootState) => state.notification.updateLoveToken);
+
     const navigate = useNavigate();
     const user = getUserFromLocalStorage();
 
@@ -26,6 +27,7 @@ function AppreciationAtelier() {
     }, 4500);
 
     useNotificationToast(createLoveTokenNotification);
+    useNotificationToast(updateLoveTokenNotification);
 
     const isLoggedIn = useRequireLoggedInUser(user);
     if (!isLoggedIn) {
@@ -42,10 +44,10 @@ function AppreciationAtelier() {
                 <section className="p-4">
                     <PageHeader
                         title="Appreciation Atelier"
-                        subtitle="Create, update, read and delete your Love Tokens"
+                        subtitle="Create, read, update or delete your Love Tokens"
                     />
                     <CreateLoveToken categories={categories} createdUser={user!} />
-                    <ReadUsersLoveTokens user={user!} />
+                    <ReadUsersLoveTokens categories={categories} user={user!} />
                 </section>
             )}
         />

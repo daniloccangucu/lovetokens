@@ -8,11 +8,13 @@ const Form = (
         children,
         isLoading,
         callback,
+        method,
         successMessage,
         errorMessage,
         setNotification,
         clearNotification,
-        user
+        user,
+        tokenNumber
     }: FormProps
 ) => {
     const dispatch = useDispatch();
@@ -20,11 +22,13 @@ const Form = (
     const onSubmitCallback = async (data: FieldValues) => {
         await handleFormSubmission({
             callback,
+            method,
             setNotification: (notification) => dispatch(setNotification(notification)),
             successMessage,
             errorMessage,
             clearNotification: () => dispatch(clearNotification()),
-            user
+            user,
+            tokenNumber
         }, data);
 
     };

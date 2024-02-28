@@ -45,6 +45,38 @@ export const loveTokenApi = createApi({
         },
       }),
     }),
+    updateLoveToken: builder.mutation<
+      LoveToken,
+      {
+        tokenNumber: string | null;
+        updatedLoveToken: Partial<LoveToken>;
+        jwtToken: string | null;
+      }
+    >({
+      query: ({ tokenNumber, updatedLoveToken, jwtToken }) => ({
+        url: `love-tokens/${tokenNumber}`,
+        method: "PUT",
+        body: updatedLoveToken,
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      }),
+    }),
+    deleteLoveToken: builder.mutation<
+      void,
+      {
+        tokenNumber: string | null;
+        jwtToken: string | null;
+      }
+    >({
+      query: ({ tokenNumber, jwtToken }) => ({
+        url: `love-tokens/${tokenNumber}`,
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      }),
+    }),
   }),
 });
 
@@ -55,4 +87,6 @@ export const {
   useFetchCategoriesQuery,
   useCreateLoveTokenMutation,
   useFetchUserLoveTokenQuery,
+  useUpdateLoveTokenMutation,
+  useDeleteLoveTokenMutation,
 } = loveTokenApi;

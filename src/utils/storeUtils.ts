@@ -29,14 +29,33 @@ export const sortLoveTokens = (loveTokens: LoveToken[], sortOrder: string) => {
   });
 };
 
+const filterSelectedLabels = (labels: (string | boolean)[]) => {
+  return labels.filter((label) => label !== false);
+};
+
+export const convertSelectedLabelToBoolean = (
+  defaultValue: string[],
+  categoryIndex: number,
+  option: string,
+  setCategoryIndex: React.Dispatch<React.SetStateAction<number>>
+) => {
+  const isSelected = defaultValue && defaultValue.includes(option);
+  if (isSelected && categoryIndex === defaultValue.length) {
+    setCategoryIndex(categoryIndex + 1);
+  }
+  return isSelected;
+};
+
 export const handleFormSubmission = async (
   {
     callback,
+    method,
     setNotification,
     clearNotification,
     successMessage,
     errorMessage,
     user,
+    tokenNumber,
   }: SubmitParams,
   data: any
 ) => {
@@ -45,12 +64,22 @@ export const handleFormSubmission = async (
       data = { ...data, createdBy: { ...user } };
     }
     if (data.labels) {
-      const selectedLabels = data.labels.filter(
-        (label: boolean | string) => label !== false
-      );
+      const selectedLabels = filterSelectedLabels(data.labels);
       data.labels = selectedLabels;
     }
-    const result = await callback(data);
+    let result;
+    if (tokenNumber) {
+      if (method === "PUT") {
+        result = await callback({
+          tokenNumber,
+          updatedLoveToken: { labels: data.labels, phrase: data.phrase },
+          jwtToken: data.createdBy.token,
+        });
+      } else if (method === "DELETE") {
+      }
+    } else {
+      result = await callback(data);
+    }
     if (result.error) {
       if (result.error.data.error) {
         throw new Error(result.error.data.error);

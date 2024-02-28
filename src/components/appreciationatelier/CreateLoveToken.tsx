@@ -48,6 +48,7 @@ function CreateLoveToken({
             <InputField
                 id="labels"
                 label="Categories"
+                type="checkbox"
                 register={register}
                 required={true}
                 errors={errors}
