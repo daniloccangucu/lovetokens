@@ -2,7 +2,6 @@ import { getUserFromLocalStorage } from "../utils/storeUtils";
 import { useRequireLoggedInUser } from "../utils/useRequireLoggedInUser";
 
 const Profile = () => {
-
     const user = getUserFromLocalStorage()
 
     const isLoggedIn = useRequireLoggedInUser(user);

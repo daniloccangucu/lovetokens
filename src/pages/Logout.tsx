@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import { getUserFromLocalStorage, removeUserFromLocalStorage } from "../utils/storeUtils";
 import { updateAuthStatus } from "../store/authSlice";
-import { useDispatch } from "react-redux";
 
 function Logout() {
     const user = getUserFromLocalStorage()
@@ -20,6 +21,7 @@ function Logout() {
     }, [user, navigate, dispatch]);
 
     return (
+        // TODO better logout?
         <>
             {user ? (
                 <p>Bye!</p>

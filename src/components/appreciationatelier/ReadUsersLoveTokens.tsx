@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { Category } from "../../models/Category";
 import { LoveToken } from "../../models/LoveToken";
 import { User } from "../../models/Types";
@@ -25,11 +26,11 @@ function ReadUsersLoveTokens({ user, categories }: { user: User, categories: Cat
     const handleDeleteLoveToken = async (tokenNumber: string) => {
         try {
             await deleteLoveTokenMutation({ tokenNumber, jwtToken: user.token });
-            // set notification success
-            // refetch
+            // TODO set notification success
+            // TODO refetch
         } catch (error) {
             console.error("Error deleting love token:", error);
-            // set delete notification error
+            // TODO set delete notification error
         }
     };
 

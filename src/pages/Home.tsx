@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useFetchFeaturedLoveTokensQuery } from "../store/loveTokensApi";
 
+import { useFetchFeaturedLoveTokensQuery } from "../store/loveTokensApi";
 import FeaturedLoveToken from "../components/home/FeaturedLoveToken";
 import DataLoader from "../utils/DataLoader";
 

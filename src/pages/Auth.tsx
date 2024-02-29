@@ -1,9 +1,10 @@
-import useAuthenticatedUser from "../utils/useAuthenticatedUser"
-import DataLoader from "../utils/DataLoader";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { updateAuthStatus } from "../store/authSlice";
 import { useDispatch } from "react-redux";
+
+import useAuthenticatedUser from "../utils/useAuthenticatedUser"
+import DataLoader from "../utils/DataLoader";
+import { updateAuthStatus } from "../store/authSlice";
 import { setUserInLocalStorage } from "../utils/storeUtils";
 
 function Auth() {
@@ -27,6 +28,7 @@ function Auth() {
             data={user}
             error={error}
             render={() => {
+                // TODO better auth message?
                 return (
                     <>
                         <p>Almost there...</p>

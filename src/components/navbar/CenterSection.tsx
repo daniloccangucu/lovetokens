@@ -2,7 +2,6 @@ import { NavSectionProp } from '../../models/Types';
 import NavLink from './NavLink';
 import NavSeparator from './NavSeparator';
 
-
 const CenterSection = ({ loggedUser }: NavSectionProp) => {
     return (
         <div className="center-section">

@@ -1,7 +1,8 @@
+import { useDispatch } from "react-redux";
+
 import { FieldValues } from "react-hook-form";
 import { FormProps } from "../../models/Types";
 import { handleFormSubmission } from '../../utils/storeUtils';
-import { useDispatch } from "react-redux";
 
 const Form = (
     { onSubmit,

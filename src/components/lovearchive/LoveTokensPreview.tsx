@@ -1,7 +1,8 @@
+import { useDispatch, useSelector } from "react-redux";
+
 import { LoveToken } from "../../models/LoveToken"
 import SmallPhraseDisplay from "./SmallPhraseDisplay"
 import CategoryButton from "./CategoryButton"
-import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../models/Types";
 import { toggleCategory } from "../../store/categoriesSlice";
 import CreationDisplay from "./CreationDisplay";

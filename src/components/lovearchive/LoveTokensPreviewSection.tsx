@@ -1,8 +1,9 @@
+import { useSelector } from 'react-redux';
+
 import LoveTokensPreview from './LoveTokensPreview';
 import DataLoader from "../../utils/DataLoader";
 import HeaderTwo from "../headers/HeaderTwo";
 import { useFetchLoveTokensQuery } from '../../store/loveTokensApi';
-import { useSelector } from 'react-redux';
 import { RootState } from '../../models/Types';
 import { sortLoveTokens } from '../../utils/storeUtils';
 

@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import PageHeader from '../components/headers/PageHeader';
 import InputField from '../components/register/InputField';
@@ -10,7 +11,6 @@ import {
     clearRegisterNotification,
     setRegisterNotification
 } from '../store/notificationSlice';
-import { useNavigate } from 'react-router-dom';
 import useTimeout from '../utils/useTimeout';
 import useNotificationToast from '../utils/useNotificationToast';
 
