@@ -6,13 +6,13 @@ import NavSeparator from './NavSeparator';
 const CenterSection = ({ loggedUser }: NavSectionProp) => {
     return (
         <div className="center-section">
-            <NavLink href="/archive" text="Love Archive" />
+            <NavLink to="/archive" text="Love Archive" />
             {loggedUser ? (
                 <>
                     <NavSeparator />
-                    <NavLink href="/atelier" text="Appreciation Atelier" />
+                    <NavLink to="/atelier" text="Appreciation Atelier" />
                     <NavSeparator />
-                    <NavLink href="/affection-cache" text="My Affection List" />
+                    <NavLink to="/my-affection-list" text="My Affection List" />
                 </>
             ) : (
                 <>

@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import { NavLinkProps } from "../../models/Types";
 
-const NavLink = ({ href, text }: NavLinkProps) => {
+const NavLink = ({ to, text }: NavLinkProps) => {
     return (
-        <a href={href} className="text-white mr-3">
+        <Link to={to} className="text-white mr-3">
             {text}
-        </a>
+        </Link>
     );
 };
 

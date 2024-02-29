@@ -7,15 +7,15 @@ const RightSection = ({ loggedUser }: NavSectionProp) => {
         <div className="right-section flex items-center mr-4">
             {loggedUser ? (
                 <>
-                    <NavLink href="/profile" text="Profile" />
+                    <NavLink to="/profile" text="Profile" />
                     <NavSeparator />
-                    <NavLink href="/logout" text="Logout" />
+                    <NavLink to="/logout" text="Logout" />
                 </>
             ) : (
                 <>
-                    <NavLink href="/login" text="Login" />
+                        <NavLink to="/login" text="Login" />
                     <NavSeparator />
-                    <NavLink href="/register" text="Register" />
+                        <NavLink to="/register" text="Register" />
                 </>
             )}
         </div>
