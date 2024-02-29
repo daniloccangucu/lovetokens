@@ -159,7 +159,7 @@ export interface FormNotificationProps {
 }
 
 export interface NavLinkProps {
-  href: string;
+  to: string;
   text: string;
 }
 

@@ -1,11 +1,8 @@
 import Logo from "./Logo";
 import CenterSection from "./CenterSection";
 import RightSection from "./RightSection";
-import { useLoggedInState } from "../../utils/useLoggedInState";
 
-const NavBar = () => {
-  const loggedUser = useLoggedInState();
-
+const NavBar = ({ loggedUser }: { loggedUser: boolean }) => {
   return (
     <nav className="navbar bg-navbar py-3 px-6 flex justify-between items-center">
       <Logo />

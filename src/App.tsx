@@ -14,13 +14,14 @@ import Logout from "./pages/Logout";
 import Login from "./pages/Login";
 import AppreciationAtelier from "./pages/AppreciationAtelier";
 import { useLoggedInState } from "./utils/useLoggedInState";
+import MyAffectionList from "./pages/MyAffectionList";
 
 function App() {
   const loggedUser = useLoggedInState();
 
   return <div className="App">
     <ToastContainer autoClose={4000} position="top-center" transition={Slide} />
-    <NavBar />
+    <NavBar loggedUser={loggedUser} />
     <main>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,6 +33,7 @@ function App() {
         <Route path="/authenticate" element={<Auth />} />
         <Route path="/profile" element={loggedUser ? <Profile /> : <Navigate to="/login" />} />
         <Route path="/atelier" element={loggedUser ? <AppreciationAtelier /> : <Navigate to="/login" />} />
+        <Route path="/my-affection-list" element={loggedUser ? <MyAffectionList /> : <Navigate to="/login" />} />
       </Routes>
     </main>
   </div>;
