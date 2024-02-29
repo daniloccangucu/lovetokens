@@ -13,9 +13,9 @@ function Logout() {
         if (user) {
             removeUserFromLocalStorage()
             setTimeout(() => {
+                dispatch(updateAuthStatus())
                 navigate("/")
-            }, 0)
-            dispatch(updateAuthStatus())
+            }, 10)
         }
     }, [user, navigate, dispatch]);
 

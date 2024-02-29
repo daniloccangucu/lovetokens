@@ -10,7 +10,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     updateAuthStatus(state) {
-      state.updateAuthStatus = true;
+      state.updateAuthStatus = !state.updateAuthStatus;
     },
   },
 });

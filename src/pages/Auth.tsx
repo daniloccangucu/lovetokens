@@ -15,9 +15,9 @@ function Auth() {
         if (user) {
             setUserInLocalStorage(user.userId, user.role, user.userName)
             setTimeout(() => {
+                dispatch(updateAuthStatus())
                 navigate("/profile")
-            }, 0)
-            dispatch(updateAuthStatus())
+            }, 10)
         }
     }, [user, navigate, dispatch]);
 
