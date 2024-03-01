@@ -6,12 +6,14 @@ export const affectionListApi = createApi({
     baseUrl: "http://13.49.67.88:3000/affection-list/",
   }),
   endpoints: (builder) => ({
-    addLoveToken: builder.mutation({
+    addLoveTokenToList: builder.mutation({
       query: ({ loveTokenId, jwToken }) => ({
         url: "/",
         method: "POST",
         body: { loveTokenId },
-        Authorization: `Bearer ${jwToken}`,
+        headers: {
+          Authorization: `Bearer ${jwToken}`,
+        },
       }),
     }),
     getAffectionList: builder.query({
@@ -25,5 +27,5 @@ export const affectionListApi = createApi({
   }),
 });
 
-export const { useAddLoveTokenMutation, useGetAffectionListQuery } =
+export const { useAddLoveTokenToListMutation, useGetAffectionListQuery } =
   affectionListApi;

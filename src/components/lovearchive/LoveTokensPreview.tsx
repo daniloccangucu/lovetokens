@@ -6,9 +6,10 @@ import CategoryButton from "./CategoryButton"
 import { RootState } from "../../models/Types";
 import { toggleCategory } from "../../store/categoriesSlice";
 import CreationDisplay from "./CreationDisplay";
+import AddLoveTokenToList from "../affectionlist/AddLoveTokenToList";
 
 
-function LoveTokensPreview({ loveTokens }: { loveTokens: LoveToken[] }) {
+function LoveTokensPreview({ loveTokens, loggedUser }: { loveTokens: LoveToken[], loggedUser: boolean }) {
     const selectedCategories = useSelector((state: RootState) => state.categories.selectedCategories);
     const dispatch = useDispatch();
 
@@ -41,6 +42,7 @@ function LoveTokensPreview({ loveTokens }: { loveTokens: LoveToken[] }) {
                             />
                         ))}
                     </div>
+                    {loggedUser ? <AddLoveTokenToList loveTokenId={loveToken._id} /> : null}
                 </article>
             ))}
         </div>

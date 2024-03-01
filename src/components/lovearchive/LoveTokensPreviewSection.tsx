@@ -7,7 +7,7 @@ import { useFetchLoveTokensQuery } from '../../store/loveTokensApi';
 import { RootState } from '../../models/Types';
 import { sortLoveTokens } from '../../utils/storeUtils';
 
-function SectionLoveTokensPreview({ selectedCategories }: { selectedCategories: string[] }) {
+function SectionLoveTokensPreview({ selectedCategories, loggedUser }: { selectedCategories: string[], loggedUser: boolean }) {
     const { data: loveTokens = [], isLoading: tokensLoading, error: tokensError } = useFetchLoveTokensQuery(selectedCategories);
 
     const sortOrder = useSelector((state: RootState) => state.creationSort.sortOrder);
@@ -23,7 +23,7 @@ function SectionLoveTokensPreview({ selectedCategories }: { selectedCategories: 
             render={() => (
                 <>
                     <HeaderTwo title="I feel loved when you..." />
-                    <LoveTokensPreview loveTokens={sortedLoveTokens} />
+                    <LoveTokensPreview loveTokens={sortedLoveTokens} loggedUser={loggedUser} />
                 </>
             )}
         />

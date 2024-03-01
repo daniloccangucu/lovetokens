@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 import PageHeader from "../components/headers/PageHeader";
 import CreationDisplay from "../components/lovearchive/CreationDisplay";
 import SmallPhraseDisplay from "../components/lovearchive/SmallPhraseDisplay";
@@ -7,8 +10,13 @@ import DataLoader from "../utils/DataLoader";
 import { getUserFromLocalStorage } from "../utils/storeUtils";
 
 function MyAffectionList() {
+    const location = useLocation();
     const user = getUserFromLocalStorage();
-    const { data, error, isLoading } = useGetAffectionListQuery(user?.token);
+    const { data, error, isLoading, refetch: refetchLoveTokens } = useGetAffectionListQuery(user?.token);
+
+    useEffect(() => {
+        refetchLoveTokens()
+    }, [location.key, refetchLoveTokens]);
 
     return (
         <DataLoader

@@ -1,5 +1,5 @@
 export interface LoveToken {
-  _id: { $oid: string };
+  _id: string;
   labels: string[];
   phrase: string;
   creationDate: string;

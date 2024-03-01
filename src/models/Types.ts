@@ -139,7 +139,8 @@ type ClearNotificationAction =
   | ActionCreatorWithoutPayload<"notification/clearRegisterNotification">
   | ActionCreatorWithoutPayload<"notification/clearLoginNotification">
   | ActionCreatorWithoutPayload<"notification/clearCreateLoveTokenNotification">
-  | ActionCreatorWithoutPayload<"notification/clearUpdateLoveTokenNotification">;
+  | ActionCreatorWithoutPayload<"notification/clearUpdateLoveTokenNotification">
+  | ActionCreatorWithoutPayload<"notification/clearAddLoveTokenToListNotification">;
 
 export interface InputFieldProps {
   id: string;
@@ -196,6 +197,21 @@ export interface SortState {
   sortOrder: "asc" | "desc";
 }
 
+export interface SortSettings {
+  sortOrder: "newest" | "oldest";
+}
+
+export interface AuthState {
+  updateAuthStatus: boolean;
+}
+
+export interface RootState {
+  categories: CategoriesState;
+  creationSort: SortState;
+  notification: NotificationState;
+  auth: AuthState;
+}
+
 export interface NotificationState {
   register: {
     message: string | null;
@@ -215,6 +231,10 @@ export interface NotificationState {
     isSuccess: boolean;
     uri?: string;
   };
+  addLoveTokenToList: {
+    message: string | null;
+    isSuccess: boolean;
+  };
 }
 
 export interface Notification {
@@ -230,23 +250,8 @@ export interface User {
   token: string | null;
 }
 
-export interface AuthState {
-  updateAuthStatus: boolean;
-}
-
 export interface SectionLoveTokensPreview extends CategoriesState {}
 
 export interface CategoriesSectionProps extends CategoriesState {
   handleCategorySelect: (category: string) => void;
-}
-
-export interface RootState {
-  categories: CategoriesState;
-  creationSort: SortState;
-  notification: NotificationState;
-  auth: AuthState;
-}
-
-export interface SortSettings {
-  sortOrder: "newest" | "oldest";
 }

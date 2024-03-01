@@ -19,6 +19,10 @@ const initialState: NotificationState = {
     message: "",
     isSuccess: false,
   },
+  addLoveTokenToList: {
+    message: "",
+    isSuccess: false,
+  },
 };
 
 const notificationSlice = createSlice({
