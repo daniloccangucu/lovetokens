@@ -44,3 +44,6 @@ function LoveTokens({ loggedUser }: { loggedUser: boolean }) {
 }
 
 export default LoveTokens
+
+// TODO backend: reduce categories to 10
+// TODO check duplicated categories error

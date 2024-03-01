@@ -21,9 +21,9 @@ function RemoveLoveTokenFromList({ loveTokenId }: { loveTokenId: string }) {
 
             }
             // const response = await removeLoveTokenFromList({ loveTokenId, jwToken: user?.token });
-            // TODO: Handle success notification
+            // TODO Handle success notification
         } catch (error) {
-            // TODO: Handle error notification
+            // TODO Handle error notification
         }
         dispatch(clearRemoveLoveTokenFromListNotification())
     };

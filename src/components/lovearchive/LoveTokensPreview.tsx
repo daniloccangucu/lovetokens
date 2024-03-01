@@ -50,3 +50,6 @@ function LoveTokensPreview({ loveTokens, loggedUser }: { loveTokens: LoveToken[]
 }
 
 export default LoveTokensPreview
+
+// TODO if user has in Affection List, button disabled
+// TODO adding spin, added! / remove

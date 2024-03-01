@@ -17,3 +17,8 @@ const Profile = () => {
 };
 
 export default Profile;
+
+// TODO delete account
+// TODO member since
+// TODO number of created LT (link to read created LTs)
+// TODO number of saved LT in Affection List (link to affection list)
