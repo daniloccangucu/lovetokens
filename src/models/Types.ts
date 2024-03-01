@@ -235,6 +235,10 @@ export interface NotificationState {
     message: string | null;
     isSuccess: boolean;
   };
+  removeLoveTokenFromList: {
+    message: string | null;
+    isSuccess: boolean;
+  };
 }
 
 export interface Notification {

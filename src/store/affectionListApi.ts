@@ -24,8 +24,21 @@ export const affectionListApi = createApi({
         },
       }),
     }),
+    removeLoveTokenFromList: builder.mutation({
+      query: ({ loveTokenId, jwToken }) => ({
+        url: "/",
+        method: "DELETE",
+        body: { loveTokenId },
+        headers: {
+          Authorization: `Bearer ${jwToken}`,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useAddLoveTokenToListMutation, useGetAffectionListQuery } =
-  affectionListApi;
+export const {
+  useAddLoveTokenToListMutation,
+  useGetAffectionListQuery,
+  useRemoveLoveTokenFromListMutation,
+} = affectionListApi;

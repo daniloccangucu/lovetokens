@@ -1,22 +1,28 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import PageHeader from "../components/headers/PageHeader";
-import CreationDisplay from "../components/lovearchive/CreationDisplay";
 import SmallPhraseDisplay from "../components/lovearchive/SmallPhraseDisplay";
 import { LoveToken } from "../models/LoveToken";
 import { useGetAffectionListQuery } from "../store/affectionListApi";
 import DataLoader from "../utils/DataLoader";
 import { getUserFromLocalStorage } from "../utils/storeUtils";
+import HeaderTwo from "../components/headers/HeaderTwo";
+import RemoveLoveTokenFromList from "../components/affectionlist/RemoveLoveTokenFromList";
+import { RootState } from "../models/Types";
 
 function MyAffectionList() {
     const location = useLocation();
     const user = getUserFromLocalStorage();
     const { data, error, isLoading, refetch: refetchLoveTokens } = useGetAffectionListQuery(user?.token);
+    const removeLoveTokenFromListNotification = useSelector((state: RootState) => state.notification.removeLoveTokenFromList);
 
     useEffect(() => {
-        refetchLoveTokens()
-    }, [location.key, refetchLoveTokens]);
+        if (location.key || removeLoveTokenFromListNotification) {
+            refetchLoveTokens()
+        }
+    }, [location.key, refetchLoveTokens, removeLoveTokenFromListNotification]);
 
     return (
         <DataLoader
@@ -30,19 +36,18 @@ function MyAffectionList() {
                         title="My affection list"
                         subtitle="Interact with your favourite Love Tokens from the Love Archive!"
                     />
-                    <div className="flex flex-wrap justify-center items-center">
-                        {data.affectionList.map((loveToken: LoveToken) => (
+                    <HeaderTwo title="I feel loved when you..." />
+                    {data.affectionList.map((loveToken: LoveToken, index: number) => (
                             <article
                                 key={loveToken.tokenNumber}
-                                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 py-2 px-2 pl-0"
+                            className="py-2 px-2 pl-0 w-fit"
                             >
+                            <div className="flex">
+                                <span className="mr-2 text--ce-soir text-xl">{index + 1}</span>
                                 <SmallPhraseDisplay {...loveToken} />
-                                <CreationDisplay
-                                    creationDate={loveToken.creationDate}
-                                    size="small"
-                                />
-                            </article>))}
-                    </div>
+                                <RemoveLoveTokenFromList loveTokenId={loveToken._id} />
+                            </div>
+                        </article>))}
                 </section>
             )}
         />

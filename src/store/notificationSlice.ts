@@ -1,6 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { NotificationState } from "../models/Types";
 
+// TODO refactor everything that's possible...
+
 const initialState: NotificationState = {
   register: {
     message: "",
@@ -20,6 +22,10 @@ const initialState: NotificationState = {
     isSuccess: false,
   },
   addLoveTokenToList: {
+    message: "",
+    isSuccess: false,
+  },
+  removeLoveTokenFromList: {
     message: "",
     isSuccess: false,
   },
@@ -79,6 +85,28 @@ const notificationSlice = createSlice({
       state.updateLoveToken.message = "";
       state.updateLoveToken.isSuccess = false;
     },
+    setAddLoveTokenToListNotification(
+      state,
+      action: PayloadAction<{ message: string; isSuccess: boolean }>
+    ) {
+      state.addLoveTokenToList.message = action.payload.message;
+      state.addLoveTokenToList.isSuccess = action.payload.isSuccess;
+    },
+    clearAddLoveTokenToListNotification(state) {
+      state.updateLoveToken.message = "";
+      state.updateLoveToken.isSuccess = false;
+    },
+    setRemoveLoveTokenFromListNotification(
+      state,
+      action: PayloadAction<{ message: string; isSuccess: boolean }>
+    ) {
+      state.removeLoveTokenFromList.message = action.payload.message;
+      state.removeLoveTokenFromList.isSuccess = action.payload.isSuccess;
+    },
+    clearRemoveLoveTokenFromListNotification(state) {
+      state.removeLoveTokenFromList.message = "";
+      state.removeLoveTokenFromList.isSuccess = false;
+    },
   },
 });
 
@@ -91,5 +119,9 @@ export const {
   clearCreateLoveTokenNotification,
   setUpdateLoveTokenNotification,
   clearUpdateLoveTokenNotification,
+  setAddLoveTokenToListNotification,
+  clearAddLoveTokenToListNotification,
+  setRemoveLoveTokenFromListNotification,
+  clearRemoveLoveTokenFromListNotification,
 } = notificationSlice.actions;
 export default notificationSlice.reducer;
