@@ -34,6 +34,16 @@ export const affectionListApi = createApi({
         },
       }),
     }),
+    updateAffectionListOrder: builder.mutation({
+      query: ({ newOrder, jwToken }) => ({
+        url: "/",
+        method: "PUT",
+        body: { newOrder },
+        headers: {
+          Authorization: `Bearer ${jwToken}`,
+        },
+      }),
+    }),
   }),
 });
 
@@ -41,4 +51,5 @@ export const {
   useAddLoveTokenToListMutation,
   useGetAffectionListQuery,
   useRemoveLoveTokenFromListMutation,
+  useUpdateAffectionListOrderMutation,
 } = affectionListApi;
