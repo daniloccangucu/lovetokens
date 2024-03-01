@@ -76,6 +76,8 @@ function MyAffectionList() {
             render={() => {
                 return (
                 <section className="p-4">
+                    {affectionList.length > 0 ?
+                    <>
                     <PageHeader
                         title="My affection list"
                         subtitle="Interact with your favourite Love Tokens from the Love Archive!"
@@ -83,30 +85,31 @@ function MyAffectionList() {
                     <HeaderTwo title="I feel loved when you..." />
                         <button onClick={editMode ? handleSaveOrder : toggleEditMode}>
                             {editMode ? "Save Order" : "Edit Order"}
-                        </button>                        {affectionList.map((loveToken: LoveToken, index: number) => (
-                            <article
-                                key={loveToken.tokenNumber}
+                        </button>
+                        {affectionList.map((loveToken: LoveToken, index: number) => (
+                        <article
+                            key={loveToken.tokenNumber}
                             className="py-2 px-2 pl-0 w-fit"
-                            >
+                        >
                             <div className="flex">
                                 <span className="mr-2 text--ce-soir text-xl">{index + 1}</span>
                                 <SmallPhraseDisplay {...loveToken} />
-                                    {editMode && (
-                                        <div>
-                                            {index > 0 && (
-                                                <button onClick={() => moveItemUp(index)}>
-                                                    Up
-                                                </button>
-                                            )}                                            {index < affectionList.length - 1 && (
-                                                <button onClick={() => moveItemDown(index)}>
-                                                    Down
-                                                </button>
-                                            )}
-                                        </div>
-                                    )}
-                                    {editMode ? null : <RemoveLoveTokenFromList loveTokenId={loveToken._id} />}
+                                {editMode && (
+                                    <div>
+                                        {index > 0 && (
+                                            <button onClick={() => moveItemUp(index)}>Up</button>
+                                        )}
+                                        {index < affectionList.length - 1 && (
+                                            <button onClick={() => moveItemDown(index)}>Down</button>
+                                        )}
+                                    </div>
+                                )}
+                                {editMode ? null : <RemoveLoveTokenFromList loveTokenId={loveToken._id} />}
                             </div>
-                        </article>))}
+                        </article>
+                        ))}
+                    </> :
+                    <>You have no Love Tokens saved</>}
                 </section>
                 )
             }}
@@ -115,3 +118,8 @@ function MyAffectionList() {
 }
 
 export default MyAffectionList
+
+// TODO shuffle order
+// TODO saving... saved!
+// TODO cancel editing
+// TODO no tokens saved styles
