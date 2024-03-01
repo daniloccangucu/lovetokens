@@ -9,7 +9,7 @@ import LargePhraseDisplay from "../components/singlelovetoken/LargePhraseDisplay
 import CategoryDisplay from "../components/singlelovetoken/CategoryDisplay";
 import CreationDisplay from "../components/lovearchive/CreationDisplay";
 
-function SingleLoveToken() {
+function SingleLoveToken({ loggedUser }: { loggedUser: boolean }) {
     const { tokenNumber } = useParams();
     const { data: loveToken, isLoading, error } = useFetchLoveTokenByNumberQuery(tokenNumber!);
 
@@ -37,7 +37,7 @@ function SingleLoveToken() {
                                 <LargePhraseDisplay {...typedLoveToken} /><br />
                                 <CategoryDisplay labels={typedLoveToken.labels} />
                             </article>
-                            <CallToAction />
+                            {loggedUser ? null : <CallToAction />}
                         </>
                     )
                 }}

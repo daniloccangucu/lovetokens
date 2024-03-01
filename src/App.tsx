@@ -25,8 +25,8 @@ function App() {
     <main>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/archive" element={<LoveTokens />} />
-        <Route path="/archive/:tokenNumber" element={<SingleLoveToken />} />
+        <Route path="/archive" element={<LoveTokens loggedUser={loggedUser} />} />
+        <Route path="/archive/:tokenNumber" element={<SingleLoveToken loggedUser={loggedUser} />} />
         <Route path="/register" element={loggedUser ? <Navigate to="/profile" /> : <Register />} />
         <Route path="/login" element={loggedUser ? <Navigate to="/profile" /> : <Login />} />
         <Route path="/logout" element={loggedUser ? <Logout /> : <Navigate to="/profile" />} />

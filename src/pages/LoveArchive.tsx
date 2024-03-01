@@ -10,7 +10,7 @@ import { toggleCategory } from "../store/categoriesSlice";
 import LoveTokensPreviewSection from "../components/lovearchive/LoveTokensPreviewSection";
 import CreationSortInput from "../components/lovearchive/CreationSortInput";
 
-function LoveTokens() {
+function LoveTokens({ loggedUser }: { loggedUser: boolean }) {
     const selectedCategories = useSelector((state: RootState) => state.categories.selectedCategories);
     const dispatch = useDispatch();
 
@@ -30,14 +30,14 @@ function LoveTokens() {
                 title="Love Archive"
                 subtitle="Explore our collection of Love Tokens"
             />
-            <CallToAction />
+            {loggedUser ? null : <CallToAction />}
             <CategoriesSection
                 selectedCategories={selectedCategories}
                 handleCategorySelect={handleCategorySelect}
             />
             <CreationSortInput />
             <LoveTokensPreviewSection
-                selectedCategories={selectedCategories}
+                selectedCategories={selectedCategories} loggedUser={loggedUser}
             />
         </section>
     )
