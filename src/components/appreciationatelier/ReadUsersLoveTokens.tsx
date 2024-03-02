@@ -8,10 +8,24 @@ import DataLoader from "../../utils/DataLoader";
 import CreationDisplay from "../lovearchive/CreationDisplay";
 import SmallPhraseDisplay from "../lovearchive/SmallPhraseDisplay";
 import UpdateUsersLoveToken from "./UpdateUsersLoveToken";
+import useMutationWithNotification from "../../utils/useMutationWithNotification";
+import { setDeleteLoveTokenNotification, clearDeleteLoveTokenNotification } from "../../store/notificationSlice";
 
 function ReadUsersLoveTokens({ user, categories }: { user: User, categories: Category[] }) {
-    const { data: usersLoveTokens = [], error, isLoading } = useFetchUserLoveTokenQuery({ userId: user.userId, token: user.token });
-    const [deleteLoveTokenMutation] = useDeleteLoveTokenMutation();
+    const { data: usersLoveTokens = [], error, isLoading: isUsersLoveTokensLoading } = useFetchUserLoveTokenQuery({ userId: user.userId, token: user.token });
+    const [mutate, { isLoading: isDeleteLoveTokenLoading }] = useDeleteLoveTokenMutation();
+
+    const [handleDeleteLoveTokenFromList] = useMutationWithNotification(
+        () => [mutate, { isLoading: isDeleteLoveTokenLoading }],
+        "Love Token removed from Appreciation List",
+        "Failed to remove Love Token. Please try again later.",
+        setDeleteLoveTokenNotification,
+        clearDeleteLoveTokenNotification
+    );
+
+    const handleDeleteButtonClick = (tokenNumber: string) => {
+        handleDeleteLoveTokenFromList({ tokenNumber });
+    };
 
     const [editingLoveToken, setEditingLoveToken] = useState<LoveToken | null>(null);
 
@@ -23,21 +37,10 @@ function ReadUsersLoveTokens({ user, categories }: { user: User, categories: Cat
         setEditingLoveToken(null);
     };
 
-    const handleDeleteLoveToken = async (tokenNumber: string) => {
-        try {
-            await deleteLoveTokenMutation({ tokenNumber, jwtToken: user.token });
-            // TODO set notification success
-            // TODO refetch
-        } catch (error) {
-            console.error("Error deleting love token:", error);
-            // TODO set delete notification error
-        }
-    };
-
     return (
         <section className="flex justify-between items-start p-4">
             <DataLoader
-                isLoading={isLoading}
+                isLoading={isUsersLoveTokensLoading}
                 error={error}
                 data={usersLoveTokens}
                 emptyMessage="This user has no Love Tokens"
@@ -64,7 +67,7 @@ function ReadUsersLoveTokens({ user, categories }: { user: User, categories: Cat
                                                 size="small"
                                             />
                                         <button onClick={() => handleEditLoveToken(usersLoveToken)}>Edit</button>__
-                                        <button onClick={() => handleDeleteLoveToken(String(usersLoveToken.tokenNumber))}> Delete</button>
+                                            <button onClick={() => handleDeleteButtonClick(String(usersLoveToken.tokenNumber))}> Delete</button>
                                     </>
                                 )}
 

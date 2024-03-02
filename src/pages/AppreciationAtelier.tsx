@@ -15,6 +15,7 @@ import ReadUsersLoveTokens from '../components/appreciationatelier/ReadUsersLove
 function AppreciationAtelier() {
     const { data: categories = [], isLoading: categoriesLoading, error: categoriesError } = useFetchCategoriesQuery();
     const createLoveTokenNotification = useSelector((state: RootState) => state.notification.createLoveToken);
+    const deleteLoveTokenNotification = useSelector((state: RootState) => state.notification.deleteLoveToken);
     const updateLoveTokenNotification = useSelector((state: RootState) => state.notification.updateLoveToken);
 
     const navigate = useNavigate();
@@ -27,6 +28,7 @@ function AppreciationAtelier() {
     }, 4500);
 
     useNotificationToast(createLoveTokenNotification);
+    useNotificationToast(deleteLoveTokenNotification);
     useNotificationToast(updateLoveTokenNotification);
 
     const isLoggedIn = useRequireLoggedInUser(user);

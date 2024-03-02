@@ -131,6 +131,7 @@ export type ClearNotificationAction =
   | ActionCreatorWithoutPayload<"notification/clearRegisterNotification">
   | ActionCreatorWithoutPayload<"notification/clearLoginNotification">
   | ActionCreatorWithoutPayload<"notification/clearCreateLoveTokenNotification">
+  | ActionCreatorWithoutPayload<"notification/clearDeleteLoveTokenNotification">
   | ActionCreatorWithoutPayload<"notification/clearUpdateLoveTokenNotification">
   | ActionCreatorWithoutPayload<"notification/clearAddLoveTokenToListNotification">
   | ActionCreatorWithoutPayload<"notification/clearRemoveLoveTokenFromListNotification">;
@@ -227,6 +228,11 @@ export interface NotificationState {
     isSuccess: boolean;
   };
   createLoveToken: {
+    message: string | null;
+    isSuccess: boolean;
+    uri?: string;
+  };
+  deleteLoveToken: {
     message: string | null;
     isSuccess: boolean;
     uri?: string;

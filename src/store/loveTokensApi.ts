@@ -62,18 +62,12 @@ export const loveTokenApi = createApi({
         },
       }),
     }),
-    deleteLoveToken: builder.mutation<
-      void,
-      {
-        tokenNumber: string | null;
-        jwtToken: string | null;
-      }
-    >({
-      query: ({ tokenNumber, jwtToken }) => ({
+    deleteLoveToken: builder.mutation({
+      query: ({ tokenNumber, jwToken }) => ({
         url: `love-tokens/${tokenNumber}`,
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${jwtToken}`,
+          Authorization: `Bearer ${jwToken}`,
         },
       }),
     }),
