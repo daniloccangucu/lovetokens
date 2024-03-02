@@ -11,6 +11,7 @@ import { getUserFromLocalStorage } from "../utils/storeUtils";
 import HeaderTwo from "../components/headers/HeaderTwo";
 import RemoveLoveTokenFromList from "../components/affectionlist/RemoveLoveTokenFromList";
 import { RootState } from "../models/Types";
+import useNotificationToast from "../utils/useNotificationToast";
 
 function MyAffectionList() {
     const location = useLocation();
@@ -66,6 +67,8 @@ function MyAffectionList() {
             setAffectionList(data.affectionList);
         }
     }, [data]);
+
+    useNotificationToast(removeLoveTokenFromListNotification)
 
     return (
         <DataLoader

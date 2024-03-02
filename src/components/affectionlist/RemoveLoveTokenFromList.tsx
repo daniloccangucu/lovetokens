@@ -1,36 +1,28 @@
-import { getUserFromLocalStorage } from '../../utils/storeUtils';
 import { useRemoveLoveTokenFromListMutation } from '../../store/affectionListApi';
+import useMutationWithNotification from '../../utils/useMutationWithNotification';
 import {
     setRemoveLoveTokenFromListNotification,
     clearRemoveLoveTokenFromListNotification
 } from '../../store/notificationSlice';
-import { useDispatch } from 'react-redux';
 
 function RemoveLoveTokenFromList({ loveTokenId }: { loveTokenId: string }) {
-    const user = getUserFromLocalStorage();
-    const dispatch = useDispatch();
-    const [removeLoveTokenFromList, { isLoading }] = useRemoveLoveTokenFromListMutation();
+    const [mutate, { isLoading }] = useRemoveLoveTokenFromListMutation();
 
-    const handleRemoveLoveTokenFromList = async () => {
-        try {
-            const result = await removeLoveTokenFromList({ loveTokenId, jwToken: user?.token });
+    const [handleRemoveLoveTokenFromList] = useMutationWithNotification(
+        () => [mutate, { isLoading }],
+        "Love Token removed from Appreciation List",
+        "Failed to remove Love Token. Please try again later.",
+        setRemoveLoveTokenFromListNotification,
+        clearRemoveLoveTokenFromListNotification
+    );
 
-            if ('data' in result && result.data && result.data.success) {
-                dispatch(setRemoveLoveTokenFromListNotification({ message: "Love Token removed from Appreciation List", isSuccess: true }))
-            } else if ('error' in result && result.error) {
-
-            }
-            // const response = await removeLoveTokenFromList({ loveTokenId, jwToken: user?.token });
-            // TODO Handle success notification
-        } catch (error) {
-            // TODO Handle error notification
-        }
-        dispatch(clearRemoveLoveTokenFromListNotification())
+    const handleRemoveButtonClick = () => {
+        handleRemoveLoveTokenFromList({ loveTokenId });
     };
 
     return (
         <div>
-            <button onClick={handleRemoveLoveTokenFromList} disabled={isLoading}>
+            <button onClick={handleRemoveButtonClick} disabled={isLoading}>
                 {isLoading ? 'Removing...' : 'X'}
             </button>
         </div>

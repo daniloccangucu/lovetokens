@@ -7,15 +7,19 @@ import { RootState } from "../../models/Types";
 import { toggleCategory } from "../../store/categoriesSlice";
 import CreationDisplay from "./CreationDisplay";
 import AddLoveTokenToList from "../affectionlist/AddLoveTokenToList";
+import useNotificationToast from "../../utils/useNotificationToast";
 
 
 function LoveTokensPreview({ loveTokens, loggedUser }: { loveTokens: LoveToken[], loggedUser: boolean }) {
     const selectedCategories = useSelector((state: RootState) => state.categories.selectedCategories);
+    const addLoveTokenToListNotification = useSelector((state: RootState) => state.notification.addLoveTokenToList);
     const dispatch = useDispatch();
 
     const handleCategorySelect = (category: string) => {
         dispatch(toggleCategory(category));
     };
+
+    useNotificationToast(addLoveTokenToListNotification)
 
     return (
         <div className="flex flex-wrap justify-center items-center">

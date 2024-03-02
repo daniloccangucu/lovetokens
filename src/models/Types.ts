@@ -7,6 +7,7 @@ import {
 } from "@reduxjs/toolkit/query";
 import { LoveToken } from "./LoveToken";
 import {
+  Action,
   ActionCreatorWithPayload,
   ActionCreatorWithoutPayload,
   SerializedError,
@@ -117,16 +118,7 @@ export interface FormProps {
   method?: string;
   successMessage: string;
   errorMessage: string;
-  setNotification:
-    | ActionCreatorWithPayload<{
-        message: string;
-        isSuccess: boolean;
-      }>
-    | ActionCreatorWithPayload<{
-        message: string;
-        isSuccess: boolean;
-        uri?: string;
-      }>;
+  setNotification: SetNotificationAction;
   clearNotification: ClearNotificationAction;
   user?: {
     userName: string | null;
@@ -135,12 +127,25 @@ export interface FormProps {
   tokenNumber?: number;
 }
 
-type ClearNotificationAction =
+export type ClearNotificationAction =
   | ActionCreatorWithoutPayload<"notification/clearRegisterNotification">
   | ActionCreatorWithoutPayload<"notification/clearLoginNotification">
   | ActionCreatorWithoutPayload<"notification/clearCreateLoveTokenNotification">
   | ActionCreatorWithoutPayload<"notification/clearUpdateLoveTokenNotification">
-  | ActionCreatorWithoutPayload<"notification/clearAddLoveTokenToListNotification">;
+  | ActionCreatorWithoutPayload<"notification/clearAddLoveTokenToListNotification">
+  | ActionCreatorWithoutPayload<"notification/clearRemoveLoveTokenFromListNotification">;
+
+export type SetNotificationAction =
+  | ActionCreatorWithPayload<{
+      message: string;
+      isSuccess: boolean;
+      uri?: string;
+    }>
+  | ((payload: {
+      message: string;
+      isSuccess: boolean;
+      uri?: string;
+    }) => Action<any>);
 
 export interface InputFieldProps {
   id: string;
@@ -259,3 +264,15 @@ export interface SectionLoveTokensPreview extends CategoriesState {}
 export interface CategoriesSectionProps extends CategoriesState {
   handleCategorySelect: (category: string) => void;
 }
+
+export interface AddLoveTokenResponse {
+  data: {
+    success: boolean;
+    affectionList: string[];
+  };
+}
+
+export type MutationHook<TParams> = () => [
+  (params: TParams) => Promise<any>,
+  { isLoading: boolean }
+];

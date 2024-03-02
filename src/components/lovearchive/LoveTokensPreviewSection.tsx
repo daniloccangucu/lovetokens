@@ -9,10 +9,8 @@ import { sortLoveTokens } from '../../utils/storeUtils';
 
 function SectionLoveTokensPreview({ selectedCategories, loggedUser }: { selectedCategories: string[], loggedUser: boolean }) {
     const { data: loveTokens = [], isLoading: tokensLoading, error: tokensError } = useFetchLoveTokensQuery(selectedCategories);
-
     const sortOrder = useSelector((state: RootState) => state.creationSort.sortOrder);
     const sortedLoveTokens = sortLoveTokens(loveTokens, sortOrder);
-
 
     return (
         <DataLoader

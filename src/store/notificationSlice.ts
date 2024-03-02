@@ -93,8 +93,8 @@ const notificationSlice = createSlice({
       state.addLoveTokenToList.isSuccess = action.payload.isSuccess;
     },
     clearAddLoveTokenToListNotification(state) {
-      state.updateLoveToken.message = "";
-      state.updateLoveToken.isSuccess = false;
+      state.addLoveTokenToList.message = "";
+      state.addLoveTokenToList.isSuccess = false;
     },
     setRemoveLoveTokenFromListNotification(
       state,

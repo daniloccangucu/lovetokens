@@ -15,11 +15,6 @@ import useTimeout from '../utils/useTimeout';
 import useNotificationToast from '../utils/useNotificationToast';
 
 function Register() {
-    // TODO backend when user is created,
-    // AffectionList id in user and affectionlist should be defined
-
-    // TODO backend should check if username is unique
-
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [registerUser, { isLoading }] = useRegisterUserMutation();
     const registerNotification = useSelector((state: RootState) => state.notification.register);

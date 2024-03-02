@@ -12,6 +12,7 @@ import CreationSortInput from "../components/lovearchive/CreationSortInput";
 
 function LoveTokens({ loggedUser }: { loggedUser: boolean }) {
     const selectedCategories = useSelector((state: RootState) => state.categories.selectedCategories);
+
     const dispatch = useDispatch();
 
     const { refetch: refetchLoveTokens } = useFetchLoveTokensQuery(selectedCategories);
