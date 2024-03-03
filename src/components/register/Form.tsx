@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { FieldValues } from "react-hook-form";
 import { FormProps } from "../../models/Types";
 import { handleFormSubmission } from '../../utils/storeUtils';
+import { useTheme } from "../../contexts/ThemeContext";
 
 const Form = (
     { onSubmit,
@@ -18,7 +19,16 @@ const Form = (
         tokenNumber
     }: FormProps
 ) => {
+    const { theme } = useTheme();
     const dispatch = useDispatch();
+
+    const formBackgroundClass = theme === 'light' ?
+        'background--lighter-persian-pink' :
+        'bg-indigo-900 text-gray-200';
+
+    const formSubmitButtonClass = theme === 'light' ?
+        'background--ce-soir hover:background--ce-soir:hover text-white' :
+        'bg-gray-900 hover:bg-gray-800 text-gray-200'
 
     const onSubmitCallback = async (data: FieldValues) => {
         await handleFormSubmission({
@@ -35,9 +45,9 @@ const Form = (
     };
 
     return (<>
-        <form onSubmit={onSubmit((data) => onSubmitCallback(data))} className="max-w-md mx-auto background--lighter-persian-pink shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-3">
+        <form onSubmit={onSubmit((data) => onSubmitCallback(data))} className={`max-w-md mx-auto shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-3 ${formBackgroundClass}`}>
             {children}
-            <button disabled={isLoading} type="submit" className="background--ce-soir hover:background--ce-soir:hover text-white font-bold py-2 px-4 rounded mt-4">
+            <button disabled={isLoading} type="submit" className={`font-bold py-2 px-4 rounded mt-4 ${formSubmitButtonClass}`}>
                 Submit
             </button>
 
