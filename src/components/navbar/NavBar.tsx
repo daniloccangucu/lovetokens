@@ -1,11 +1,12 @@
-import Logo from "./Logo";
 import CenterSection from "./CenterSection";
 import RightSection from "./RightSection";
+import LeftSection from "./LeftSection";
 
 const NavBar = ({ loggedUser }: { loggedUser: boolean }) => {
+
   return (
-    <nav className="navbar bg-navbar py-3 px-6 flex justify-between items-center">
-      <Logo />
+    <nav className="navbar py-3 px-6 flex justify-between items-center">
+      <LeftSection />
       <CenterSection loggedUser={loggedUser} />
       <RightSection loggedUser={loggedUser} />
     </nav>

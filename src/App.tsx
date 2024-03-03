@@ -15,14 +15,17 @@ import Login from "./pages/Login";
 import AppreciationAtelier from "./pages/AppreciationAtelier";
 import { useLoggedInState } from "./utils/useLoggedInState";
 import MyAffectionList from "./pages/MyAffectionList";
+import { useTheme } from "./contexts/ThemeContext";
 
 function App() {
   const loggedUser = useLoggedInState();
+  const { theme } = useTheme();
+
 
   return <div className="App">
     <ToastContainer autoClose={4000} position="top-center" transition={Slide} />
     <NavBar loggedUser={loggedUser} />
-    <main>
+    <main className={`theme${theme === 'light' ? '' : '--dark'}`}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/archive" element={<LoveTokens loggedUser={loggedUser} />} />

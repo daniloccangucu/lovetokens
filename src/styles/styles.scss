@@ -26,6 +26,13 @@
   }
 }
 
+.theme {
+  &--dark {
+    background-color: $black-ce-soir;
+    color: white;
+  }
+}
+
 .background {
   &--lighter-persian-pink {
     background-color: $lighter-persian-pink;
@@ -71,18 +78,5 @@
   &--ce-soir {
     border-radius: 5px;
     border-color: $ce-soir;
-  }
-}
-
-.notification {
-  border-radius: $notification-border-radius;
-  color: white;
-  line-height: $notification-line-height;
-  padding: $notification-padding;
-  &--success {
-    background-color: $success-bg-color;
-  }
-  &--error {
-    background-color: $error-bg-color;
   }
 }
