@@ -44,13 +44,13 @@ const Form = (
 
     };
 
-    return (<>
-        <form onSubmit={onSubmit((data) => onSubmitCallback(data))} className={`max-w-md mx-auto shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-3 ${formBackgroundClass}`}>
+    return (
+        <>
+            <form onSubmit={onSubmit((data) => onSubmitCallback(data))} className={`max-w-md mx-auto shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-3 ${formBackgroundClass}`}>
             {children}
             <button disabled={isLoading} type="submit" className={`font-bold py-2 px-4 rounded mt-4 ${formSubmitButtonClass}`}>
                 Submit
-            </button>
-
+                </button>
         </form>
     </>
     );

@@ -16,22 +16,23 @@ import AppreciationAtelier from "./pages/AppreciationAtelier";
 import { useLoggedInState } from "./utils/useLoggedInState";
 import MyAffectionList from "./pages/MyAffectionList";
 import { useTheme } from "./contexts/ThemeContext";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App() {
   const loggedUser = useLoggedInState();
   const { theme } = useTheme();
-
+  const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
   return <div className="App">
     <ToastContainer autoClose={4000} position="top-center" transition={Slide} />
     <NavBar loggedUser={loggedUser} />
-    <main className={`theme${theme === 'light' ? '' : '--dark'}`}>
+    <main className={`theme${theme === 'light' ? null : '--dark'}`}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/archive" element={<LoveTokens loggedUser={loggedUser} />} />
         <Route path="/archive/:tokenNumber" element={<SingleLoveToken loggedUser={loggedUser} />} />
         <Route path="/register" element={loggedUser ? <Navigate to="/profile" /> : <Register />} />
-        <Route path="/login" element={loggedUser ? <Navigate to="/profile" /> : <Login />} />
+        <Route path="/login" element={loggedUser ? <Navigate to="/profile" /> : <GoogleOAuthProvider clientId={googleClientId!}><Login /></GoogleOAuthProvider>} />
         <Route path="/logout" element={loggedUser ? <Logout /> : <Navigate to="/profile" />} />
         <Route path="/authenticate" element={<Auth />} />
         <Route path="/profile" element={loggedUser ? <Profile /> : <Navigate to="/login" />} />
