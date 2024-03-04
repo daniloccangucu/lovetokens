@@ -2,9 +2,14 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { LoveToken } from "../models/LoveToken";
 import { Category } from "../models/Category";
 
+const baseUrl =
+  process.env.NODE_ENV === "development"
+    ? process.env.REACT_APP_LOVE_TOKEN_API_URL
+    : process.env.REACT_APP_LOVE_TOKEN_TEST_API_URL;
+
 export const loveTokenApi = createApi({
   reducerPath: "loveTokensApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://13.49.67.88:3000/" }),
+  baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     fetchFeaturedLoveTokens: builder.query<LoveToken[], void>({
       query: () => "featured-love-tokens",
@@ -27,6 +32,7 @@ export const loveTokenApi = createApi({
     fetchCategories: builder.query<Category[], void>({
       query: () => "categories",
     }),
+    // TODO next mutation should have the token
     createLoveToken: builder.mutation<LoveToken, Partial<LoveToken>>({
       query: (newLoveToken) => ({
         url: "love-tokens",
