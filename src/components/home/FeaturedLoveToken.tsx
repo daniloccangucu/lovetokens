@@ -4,7 +4,7 @@ import LargePhraseDisplay from '../singlelovetoken/LargePhraseDisplay';
 
 function FeaturedLoveToken(loveToken: LoveToken) {
     return (
-        <div className={`flex flex-col items-center section-container--max-height`}>
+        <div className={`flex flex-col items-center section-container--min-height`}>
             <div className="px-4 text-6xl">
                 <LargePhraseDisplay {...loveToken} />
             </div>

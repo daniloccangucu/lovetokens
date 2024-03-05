@@ -30,7 +30,7 @@ function Login() {
     useNotificationToast(loginNotification);
 
     return (
-        <section className="flex-row p-4">
+        <section className="flex-row p-4 w-full lg:max-w-6xl section-container--min-height mx-auto">
             <PageHeader title="Login" subtitle="Insert your credentials and have full access to Love Tokens" />
             <Form
                 onSubmit={handleSubmit}

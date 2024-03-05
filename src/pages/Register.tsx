@@ -29,7 +29,7 @@ function Register() {
     useNotificationToast(registerNotification);
 
     return (
-        <section className="flex-row p-4">
+        <section className="flex-row p-4 lg:max-w-6xl section-container--min-height mx-auto">
             <PageHeader title="Register" subtitle="Welcome to our beloved community!" />
             <Form
                 onSubmit={handleSubmit}

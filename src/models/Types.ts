@@ -67,6 +67,7 @@ export interface PageHeaderProps {
 
 export interface HeaderTwoProps {
   title: string;
+  position?: string;
 }
 
 export interface LabelsProps {
@@ -78,6 +79,12 @@ export interface CategoryButtonProps {
   selected: boolean;
   onClick: () => void;
   size: string;
+}
+
+export interface NotificationBoxProps {
+  message: string;
+  to?: string;
+  toMessage?: string;
 }
 
 export interface FormProps {
@@ -172,6 +179,13 @@ export interface NavLinkProps {
 
 export interface NavSectionProp {
   loggedUser: boolean;
+}
+
+export interface ButtonProps {
+  onClick: () => void;
+  isLoading?: boolean;
+  label: string;
+  loadingText?: string;
 }
 
 export interface SubmitParams {

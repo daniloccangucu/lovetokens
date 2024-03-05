@@ -23,10 +23,10 @@ function App() {
   const { theme } = useTheme();
   const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
-  return <div className="App">
+  return <div className={`App theme${theme === 'light' ? '--light' : '--dark'}`}>
     <ToastContainer autoClose={4000} position="top-center" transition={Slide} />
     <NavBar loggedUser={loggedUser} />
-    <main className={`theme${theme === 'light' ? null : '--dark'}`}>
+    <main>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/archive" element={<LoveTokens loggedUser={loggedUser} />} />

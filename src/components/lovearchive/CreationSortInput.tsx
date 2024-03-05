@@ -26,7 +26,7 @@ const CreationSortInput = () => {
                 onChange={handleSortChange}
                 className={`text-lg outline-none
                     ${theme === 'light' ?
-                        'text--ce-soir border-b border-violet-600' :
+                    'text--ce-soir bg-red-50 border-b border-violet-600' :
                         'text-gray-200 background--black-ce-soir border-b border-gray-600'}`
                 }
             >

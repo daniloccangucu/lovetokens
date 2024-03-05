@@ -4,6 +4,7 @@ import {
     setRemoveLoveTokenFromListNotification,
     clearRemoveLoveTokenFromListNotification
 } from '../../store/notificationSlice';
+import CustomButton from '../shared/CustomButton';
 
 function RemoveLoveTokenFromList({ loveTokenId }: { loveTokenId: string }) {
     const [mutate, { isLoading }] = useRemoveLoveTokenFromListMutation();
@@ -21,10 +22,8 @@ function RemoveLoveTokenFromList({ loveTokenId }: { loveTokenId: string }) {
     };
 
     return (
-        <div>
-            <button onClick={handleRemoveButtonClick} disabled={isLoading}>
-                {isLoading ? 'Removing...' : 'X'}
-            </button>
+        <div className="ml-2">
+            <CustomButton onClick={handleRemoveButtonClick} label="Delete" isLoading={isLoading} loadingText='Deleting...' />
         </div>
     );
 }

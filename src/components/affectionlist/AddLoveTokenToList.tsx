@@ -1,6 +1,7 @@
 import { useAddLoveTokenToListMutation } from '../../store/affectionListApi';
 import useMutationWithNotification from '../../utils/useMutationWithNotification';
 import { setAddLoveTokenToListNotification, clearAddLoveTokenToListNotification } from '../../store/notificationSlice';
+import CustomButton from '../shared/CustomButton';
 
 function AddLoveTokenToList({ loveTokenId }: { loveTokenId: string }) {
     const [mutate, { isLoading }] = useAddLoveTokenToListMutation();
@@ -18,9 +19,12 @@ function AddLoveTokenToList({ loveTokenId }: { loveTokenId: string }) {
 
     return (
         <div>
-            <button onClick={handleAddButtonClick} disabled={isLoading}>
-                {isLoading ? 'Adding...' : 'Add Love Token'}
-            </button>
+            <CustomButton
+                onClick={handleAddButtonClick}
+                isLoading={isLoading}
+                label="Add to Affection List"
+                loadingText="Adding..."
+            />
         </div>
     );
 }

@@ -11,6 +11,7 @@ import useTimeout from "../utils/useTimeout";
 import { useRequireLoggedInUser } from '../utils/useRequireLoggedInUser';
 import CreateLoveToken from '../components/appreciationatelier/CreateLoveToken';
 import ReadUsersLoveTokens from '../components/appreciationatelier/ReadUsersLoveTokens';
+import HeaderTwo from '../components/headers/HeaderTwo';
 
 function AppreciationAtelier() {
     const { data: categories = [], isLoading: categoriesLoading, error: categoriesError } = useFetchCategoriesQuery();
@@ -43,12 +44,14 @@ function AppreciationAtelier() {
             data={categories}
             emptyMessage="There are no categories to be displayed"
             render={() => (
-                <section className="p-4">
+                <section className="p-4 w-full lg:max-w-6xl mx-auto">
                     <PageHeader
                         title="Appreciation Atelier"
-                        subtitle="Create, read, update or delete your Love Tokens"
+                        subtitle="The official Love Token dashboard!"
                     />
+                    <HeaderTwo title="Create a new Love Token" position="text-center" />
                     <CreateLoveToken categories={categories} createdUser={user!} />
+                    <HeaderTwo title="Your created Love Tokens" position="text-center" />
                     <ReadUsersLoveTokens categories={categories} user={user!} />
                 </section>
             )}

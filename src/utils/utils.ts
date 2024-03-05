@@ -148,3 +148,4 @@ export const getUserFromLocalStorage = () => {
     token: token,
   };
 };
+

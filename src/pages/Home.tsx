@@ -19,7 +19,7 @@ function Home() {
   const currentLoveToken = featuredLoveTokens[currentIndex];
 
   return (
-    <section className={`flex justify-between items-start p-4`}>
+    <section className={`flex justify-center items-center p-4 section-container--max-width mx-auto`}>
       <DataLoader
         isLoading={isLoading}
         error={error}

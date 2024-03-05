@@ -12,6 +12,8 @@ import HeaderTwo from "../components/headers/HeaderTwo";
 import RemoveLoveTokenFromList from "../components/affectionlist/RemoveLoveTokenFromList";
 import { RootState } from "../models/Types";
 import useNotificationToast from "../utils/useNotificationToast";
+import NotificationBox from "../components/shared/NotificationBox";
+import CustomButton from "../components/shared/CustomButton";
 
 function MyAffectionList() {
     const location = useLocation();
@@ -26,7 +28,7 @@ function MyAffectionList() {
         setEditMode(!editMode);
     };
 
-    const moveItemUp = (index: number) => {
+    const moveLoveTokenUp = (index: number) => {
         if (index > 0) {
             const newList = [...affectionList];
             const temp = newList[index - 1];
@@ -36,7 +38,7 @@ function MyAffectionList() {
         }
     };
 
-    const moveItemDown = (index: number) => {
+    const moveLoveTokenDown = (index: number) => {
         if (index < affectionList.length - 1) {
             const newList = [...affectionList];
             const temp = newList[index + 1];
@@ -78,41 +80,47 @@ function MyAffectionList() {
             emptyMessage="No affection list to be displayed"
             render={() => {
                 return (
-                <section className="p-4">
-                    {affectionList.length > 0 ?
-                    <>
-                    <PageHeader
+                    <section className="p-4 w-full lg:max-w-6xl mx-auto section-container--min-height">
+                        <PageHeader
                         title="My affection list"
                         subtitle="Interact with your favourite Love Tokens from the Love Archive!"
-                    />
-                    <HeaderTwo title="I feel loved when you..." />
-                        <button onClick={editMode ? handleSaveOrder : toggleEditMode}>
-                            {editMode ? "Save Order" : "Edit Order"}
-                        </button>
-                        {affectionList.map((loveToken: LoveToken, index: number) => (
-                        <article
-                            key={loveToken.tokenNumber}
-                            className="py-2 px-2 pl-0 w-fit"
-                        >
-                            <div className="flex">
-                                <span className="mr-2 text--ce-soir text-xl">{index + 1}</span>
-                                <SmallPhraseDisplay {...loveToken} />
-                                {editMode && (
-                                    <div>
-                                        {index > 0 && (
-                                            <button onClick={() => moveItemUp(index)}>Up</button>
-                                        )}
-                                        {index < affectionList.length - 1 && (
-                                            <button onClick={() => moveItemDown(index)}>Down</button>
-                                        )}
-                                    </div>
-                                )}
-                                {editMode ? null : <RemoveLoveTokenFromList loveTokenId={loveToken._id} />}
-                            </div>
-                        </article>
-                        ))}
-                    </> :
-                    <>You have no Love Tokens saved</>}
+                        />
+                        {affectionList.length > 0 ?
+                            <>
+                                <HeaderTwo title="I feel loved when you..." />
+                                {affectionList.length > 1 ? <CustomButton
+                                    onClick={editMode ? handleSaveOrder : toggleEditMode}
+                                    label={editMode ? "Save order" : "Edit list order"}
+                                /> : null}
+                                {affectionList.map((loveToken: LoveToken, index: number) => (
+                                    <article
+                                        key={loveToken.tokenNumber}
+                                        className="py-2 px-2 pl-0 w-fit"
+                                    >
+                                        <div className="flex">
+                                            <span className="mr-2 text--ce-soir text-xl">{index + 1}</span>
+                                            <SmallPhraseDisplay {...loveToken} />
+                                            {editMode && (
+                                                <div>
+                                                    {index > 0 && (
+                                                        <button onClick={() => moveLoveTokenUp(index)}>⇡</button>
+                                                    )}
+                                                    {index < affectionList.length - 1 && (
+                                                        <button onClick={() => moveLoveTokenDown(index)}>⇣</button>
+                                                    )}
+                                                </div>
+                                            )}
+                                            {editMode ? null : <RemoveLoveTokenFromList loveTokenId={loveToken._id} />}
+                                        </div>
+                                    </article>
+                                ))}
+                            </> :
+                            <NotificationBox
+                                message="You haven't saved any Love Tokens yet."
+                                to="/archive"
+                                toMessage="Browse the Love Archive and save some!"
+                            />
+                        }
                 </section>
                 )
             }}

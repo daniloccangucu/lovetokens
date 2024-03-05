@@ -6,6 +6,9 @@
 // NavBar component
 .navbar {
   background-color: $ce-soir;
+  &--width {
+    width: 1200px;
+  }
 }
 
 // Home component
@@ -14,6 +17,20 @@
 }
 
 // Shared styles
+.section {
+  &-container {
+    &--min-height {
+      min-height: 75vh;
+    }
+    &--max-height {
+      max-height: 75vh;
+    }
+    &--max-width {
+      max-width: 900px;
+    }
+  }
+}
+
 .text {
   &--persian-pink {
     color: $persian-pink;
@@ -30,6 +47,9 @@
   &--dark {
     background-color: $black-ce-soir;
     color: white;
+  }
+  &--light {
+    background-color: $pinkish-red;
   }
 }
 
