@@ -278,6 +278,16 @@ export interface AddLoveTokenResponse {
   };
 }
 
+export interface CreateLoveTokenResponse {
+  message: string;
+  loveToken: LoveToken;
+  uri: string;
+}
+
+export interface DeleteLoveTokenResponse {
+  data: { success: boolean; message: string };
+}
+
 export type MutationHook<TParams> = () => [
   (params: TParams) => Promise<any>,
   { isLoading: boolean }

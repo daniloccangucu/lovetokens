@@ -1,8 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+const baseUrl =
+  process.env.NODE_ENV === "development"
+    ? process.env.REACT_APP_LOVE_TOKEN_API_URL
+    : process.env.REACT_APP_LOVE_TOKEN_TEST_API_URL;
+
 export const userApi = createApi({
   reducerPath: "userApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://13.49.67.88:3000/" }),
+  baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     registerUser: builder.mutation({
       query: (userData) => ({

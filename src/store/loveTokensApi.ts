@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { LoveToken } from "../models/LoveToken";
 import { Category } from "../models/Category";
+import { CreateLoveTokenResponse } from "../models/Types";
 
 const baseUrl =
   process.env.NODE_ENV === "development"
@@ -33,7 +34,10 @@ export const loveTokenApi = createApi({
       query: () => "categories",
     }),
     // TODO next mutation should have the token
-    createLoveToken: builder.mutation<LoveToken, Partial<LoveToken>>({
+    createLoveToken: builder.mutation<
+      CreateLoveTokenResponse,
+      Partial<LoveToken>
+    >({
       query: (newLoveToken) => ({
         url: "love-tokens",
         method: "POST",
