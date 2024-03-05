@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../models/Types";
-import { isUserLoggedIn } from "./storeUtils";
+import { isUserLoggedIn } from "./utils";
 
 export function useLoggedInState() {
   const updateAuthStatus = useSelector(

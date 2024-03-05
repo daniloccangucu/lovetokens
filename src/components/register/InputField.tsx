@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { InputFieldProps } from "../../models/Types";
-import { convertSelectedLabelToBoolean } from "../../utils/storeUtils";
+import { convertSelectedLabelToBoolean } from "../../utils/utils";
 
 const InputField = ({ id, label, type, register, required, errors, options, defaultValue }: InputFieldProps) => {
     let inputElement;

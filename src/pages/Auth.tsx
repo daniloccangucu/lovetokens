@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import useAuthenticatedUser from "../utils/useAuthenticatedUser"
 import DataLoader from "../utils/DataLoader";
 import { updateAuthStatus } from "../store/authSlice";
-import { setUserInLocalStorage } from "../utils/storeUtils";
+import { setUserInLocalStorage } from "../utils/utils";
 
 function Auth() {
     const { data: user, isLoading, error } = useAuthenticatedUser();

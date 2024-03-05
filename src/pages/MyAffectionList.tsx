@@ -7,7 +7,7 @@ import SmallPhraseDisplay from "../components/lovearchive/SmallPhraseDisplay";
 import { LoveToken } from "../models/LoveToken";
 import { useGetAffectionListQuery, useUpdateAffectionListOrderMutation } from "../store/affectionListApi";
 import DataLoader from "../utils/DataLoader";
-import { getUserFromLocalStorage } from "../utils/storeUtils";
+import { getUserFromLocalStorage } from "../utils/utils";
 import HeaderTwo from "../components/headers/HeaderTwo";
 import RemoveLoveTokenFromList from "../components/affectionlist/RemoveLoveTokenFromList";
 import { RootState } from "../models/Types";

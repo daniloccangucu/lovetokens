@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 
 import { FieldValues } from "react-hook-form";
 import { FormProps } from "../../models/Types";
-import { handleFormSubmission } from '../../utils/storeUtils';
+import { handleFormSubmission } from '../../utils/utils';
 import { useTheme } from "../../contexts/ThemeContext";
 
 const Form = (

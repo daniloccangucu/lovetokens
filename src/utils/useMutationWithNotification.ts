@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getUserFromLocalStorage } from "./storeUtils";
+import { getUserFromLocalStorage } from "./utils";
 import {
   ClearNotificationAction,
   SetNotificationAction,

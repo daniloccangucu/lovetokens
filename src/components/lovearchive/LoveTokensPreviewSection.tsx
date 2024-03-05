@@ -5,7 +5,7 @@ import DataLoader from "../../utils/DataLoader";
 import HeaderTwo from "../headers/HeaderTwo";
 import { useFetchLoveTokensQuery } from '../../store/loveTokensApi';
 import { RootState } from '../../models/Types';
-import { sortLoveTokens } from '../../utils/storeUtils';
+import { sortLoveTokens } from '../../utils/utils';
 
 function SectionLoveTokensPreview({ selectedCategories, loggedUser }: { selectedCategories: string[], loggedUser: boolean }) {
     const { data: loveTokens = [], isLoading: tokensLoading, error: tokensError } = useFetchLoveTokensQuery(selectedCategories);

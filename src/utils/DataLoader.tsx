@@ -1,5 +1,5 @@
 import { DataLoaderProps } from "../models/Types";
-import { getErrorMessage } from "./storeUtils";
+import { getErrorMessage } from "./utils";
 
 function DataLoader({ isLoading, error, data, emptyMessage, render }: DataLoaderProps) {
     if (isLoading) {

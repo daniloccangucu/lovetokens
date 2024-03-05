@@ -6,7 +6,7 @@ import { RootState } from '../models/Types';
 import useNotificationToast from '../utils/useNotificationToast';
 import { useFetchCategoriesQuery } from '../store/loveTokensApi';
 import DataLoader from "../utils/DataLoader";
-import { getUserFromLocalStorage } from "../utils/storeUtils";
+import { getUserFromLocalStorage } from "../utils/utils";
 import useTimeout from "../utils/useTimeout";
 import { useRequireLoggedInUser } from '../utils/useRequireLoggedInUser';
 import CreateLoveToken from '../components/appreciationatelier/CreateLoveToken';

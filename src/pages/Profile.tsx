@@ -1,4 +1,4 @@
-import { getUserFromLocalStorage } from "../utils/storeUtils";
+import { getUserFromLocalStorage } from "../utils/utils";
 import { useRequireLoggedInUser } from "../utils/useRequireLoggedInUser";
 
 const Profile = () => {
