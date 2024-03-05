@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import useTimeout from '../utils/useTimeout';
 import PageHeader from '../components/headers/PageHeader';
-import InputField from '../components/register/InputField';
-import Form from '../components/register/Form';
+import InputField from '../components/shared/InputField';
+import Form from '../components/shared/Form';
 import { useLoginUserMutation } from '../store/userApi';
 import { RootState } from '../models/Types';
 import {

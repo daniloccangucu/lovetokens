@@ -2,8 +2,8 @@ import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
-import Form from '../register/Form';
-import InputField from '../register/InputField';
+import Form from '../shared/Form';
+import InputField from '../shared/InputField';
 import { useUpdateLoveTokenMutation } from '../../store/loveTokensApi';
 import {
     clearUpdateLoveTokenNotification,

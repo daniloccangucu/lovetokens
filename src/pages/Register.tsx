@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import PageHeader from '../components/headers/PageHeader';
-import InputField from '../components/register/InputField';
-import Form from '../components/register/Form';
+import InputField from '../components/shared/InputField';
+import Form from '../components/shared/Form';
 import { useRegisterUserMutation } from '../store/userApi';
 import { RootState } from '../models/Types';
 import {
