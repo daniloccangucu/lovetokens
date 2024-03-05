@@ -3,6 +3,7 @@ import { userApi } from "../store/userApi";
 import { store } from "../store/store";
 import { LoveToken } from "../models/LoveToken";
 import { DeleteLoveTokenResponse } from "../models/Types";
+import { Category } from "../models/Category";
 
 describe("Testing loveTokenApi", () => {
   let accessToken = "";
@@ -105,7 +106,7 @@ describe("Testing loveTokenApi", () => {
       { name: "Warmth" },
     ];
 
-    data!.forEach((category) => {
+    data!.forEach((category: Category) => {
       expect(category).toHaveProperty("_id");
       expect(category).toHaveProperty("name");
     });
