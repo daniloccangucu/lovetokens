@@ -31,8 +31,21 @@ export const userApi = createApi({
         },
       }),
     }),
+    deleteUser: builder.mutation({
+      query: ({ userId, accessToken }) => ({
+        url: `/user/${userId}`,
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useRegisterUserMutation, useLoginUserMutation, useCheckAuthQuery } =
-  userApi;
+export const {
+  useRegisterUserMutation,
+  useLoginUserMutation,
+  useCheckAuthQuery,
+  useDeleteUserMutation,
+} = userApi;
