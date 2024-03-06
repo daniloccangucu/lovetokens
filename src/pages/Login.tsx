@@ -13,7 +13,6 @@ import {
     setLoginNotification
 } from '../store/notificationSlice';
 import useNotificationToast from '../utils/useNotificationToast';
-import GoogleLoginButton from '../components/login/GoogleLoginButton';
 
 function Login() {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -44,7 +43,6 @@ function Login() {
                 <InputField id="email" label="Email" type="email" register={register} required={true} errors={errors} />
                 <InputField id="password" label="Password" type="password" register={register} required={true} errors={errors} />
             </Form>
-            <GoogleLoginButton />
         </section>
     );
 }
