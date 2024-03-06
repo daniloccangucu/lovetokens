@@ -8,6 +8,7 @@ import { toggleCategory } from "../../store/categoriesSlice";
 import CreationDisplay from "./CreationDisplay";
 import AddLoveTokenToList from "../affectionlist/AddLoveTokenToList";
 import useNotificationToast from "../../utils/useNotificationToast";
+import { Link } from "react-router-dom";
 
 function LoveTokensPreview({ loveTokens, loggedUser }: { loveTokens: LoveToken[], loggedUser: boolean }) {
     const selectedCategories = useSelector((state: RootState) => state.categories.selectedCategories);
@@ -27,9 +28,9 @@ function LoveTokensPreview({ loveTokens, loggedUser }: { loveTokens: LoveToken[]
                     key={loveToken.tokenNumber}
                     className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 py-2 px-2 pl-0"
                 >
-                    <a href={`/archive/${loveToken.tokenNumber}`}>
+                    <Link to={`/archive/${loveToken.tokenNumber}`}>
                         <SmallPhraseDisplay {...loveToken} />
-                    </a>
+                    </Link>
                     <CreationDisplay
                         creationDate={loveToken.creationDate}
                         size="small"
