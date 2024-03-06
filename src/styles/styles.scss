@@ -3,11 +3,81 @@
 @import "tailwindcss/utilities";
 @import './_variables.scss';
 
-// NavBar component
+ul {
+  list-style: none;
+}
+
+/* navbar */
 .navbar {
   background-color: $ce-soir;
-  &--width {
-    width: 1200px;
+  grid-template-columns: 1.5fr 3fr 0fr
+}
+
+
+/* ul  */
+.navMenu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* media queries for navbar */
+@media screen and (max-width: 810px){
+  .navbar {
+    grid-template-columns: 2fr 0.3fr 0.3fr
+  }
+
+  .nav-section {
+    display: block;
+  }
+
+  /* hamburger */
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+
+  .bar {
+        background-color: #120f0b;
+        width: 20px;
+        height: 3px;
+        display: block;
+        margin: 5px;
+        -webkit-transition: 0.3s ease-in-out;
+        transition: 0.3s ease-in-out;
+    }
+
+  /* adding active class to the bars  */
+  .hamburger.active .bar:nth-child(2){
+    opacity: 0;
+  }
+  .hamburger.active .bar:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active .bar:nth-child(3){
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* navMenu */
+  .navMenu{
+    position: absolute;
+    top: 49px;
+    flex-direction: column;
+    gap: 0;
+    left: -100%;
+    text-align: start;
+    width: 100%;
+    transition: 0.7s ease-in-out;
+    background-color: $ce-soir;
+    padding: 10px;
+  }
+
+  .navMenu.active{
+    left: 0;
+  }
+
+  .navMenu li {
+    margin: 16px 0;
   }
 }
 
