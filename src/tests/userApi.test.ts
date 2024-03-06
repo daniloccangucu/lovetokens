@@ -64,8 +64,10 @@ describe("Testing userApi", () => {
     expect(accessToken).toBeTruthy();
     expect(userId).toBeTruthy();
 
+    const jwToken = accessToken;
+
     const response = await store.dispatch(
-      userApi.endpoints.deleteUser.initiate({ userId, accessToken })
+      userApi.endpoints.deleteUser.initiate({ userId, jwToken })
     );
 
     if ("error" in response) {

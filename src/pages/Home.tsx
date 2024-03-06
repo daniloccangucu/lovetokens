@@ -36,4 +36,3 @@ export default Home;
 // TODO button to add featured LT to affection list if logged in
 // TODO button to create your own LT if logged in
 // TODO display inactivated buttons if not logged in
-// TODO call to action if not logged in

@@ -4,7 +4,7 @@ import { affectionListApi } from "../store/affectionListApi";
 import { LoveToken } from "../models/LoveToken";
 
 describe("Affection List API", () => {
-  let accessToken = "";
+  let jwToken = "";
   let userId = "";
 
   beforeAll(async () => {
@@ -23,10 +23,10 @@ describe("Affection List API", () => {
       throw new Error("Failed to create test user");
     }
 
-    accessToken = response.data.token;
+    jwToken = response.data.token;
 
     const authResponse = await store.dispatch(
-      userApi.endpoints.checkAuth.initiate(accessToken)
+      userApi.endpoints.checkAuth.initiate(jwToken)
     );
 
     if ("error" in authResponse) {
@@ -39,7 +39,7 @@ describe("Affection List API", () => {
 
   afterAll(async () => {
     const response = await store.dispatch(
-      userApi.endpoints.deleteUser.initiate({ userId, accessToken })
+      userApi.endpoints.deleteUser.initiate({ userId, jwToken })
     );
 
     if ("error" in response) {
@@ -59,7 +59,7 @@ describe("Affection List API", () => {
       const response = await store.dispatch(
         affectionListApi.endpoints.addLoveTokenToList.initiate({
           loveTokenId,
-          jwToken: accessToken,
+          jwToken,
         })
       );
 
@@ -78,7 +78,7 @@ describe("Affection List API", () => {
     }
 
     const updatedList = await store.dispatch(
-      affectionListApi.endpoints.getAffectionList.initiate(accessToken)
+      affectionListApi.endpoints.getAffectionList.initiate(jwToken)
     );
     if ("error" in updatedList) {
       console.error(
@@ -103,7 +103,7 @@ describe("Affection List API", () => {
   });
   it("fetches the user's affection list", async () => {
     const response = await store.dispatch(
-      affectionListApi.endpoints.getAffectionList.initiate(accessToken)
+      affectionListApi.endpoints.getAffectionList.initiate(jwToken)
     );
 
     if ("error" in response) {
@@ -127,7 +127,7 @@ describe("Affection List API", () => {
     const response = await store.dispatch(
       affectionListApi.endpoints.removeLoveTokenFromList.initiate({
         loveTokenId: "65cb83313ef6388c7b785974",
-        jwToken: accessToken,
+        jwToken,
       })
     );
 
@@ -147,7 +147,7 @@ describe("Affection List API", () => {
   });
   it("updates the affection list order", async () => {
     const currentResponse = await store.dispatch(
-      affectionListApi.endpoints.getAffectionList.initiate(accessToken)
+      affectionListApi.endpoints.getAffectionList.initiate(jwToken)
     );
 
     if ("error" in currentResponse) {
@@ -166,8 +166,8 @@ describe("Affection List API", () => {
 
     const response = await store.dispatch(
       affectionListApi.endpoints.updateAffectionListOrder.initiate({
-        newOrder: newOrder,
-        jwToken: accessToken,
+        newOrder,
+        jwToken,
       })
     );
 

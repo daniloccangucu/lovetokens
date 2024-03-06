@@ -9,7 +9,6 @@ import CreationDisplay from "./CreationDisplay";
 import AddLoveTokenToList from "../affectionlist/AddLoveTokenToList";
 import useNotificationToast from "../../utils/useNotificationToast";
 
-
 function LoveTokensPreview({ loveTokens, loggedUser }: { loveTokens: LoveToken[], loggedUser: boolean }) {
     const selectedCategories = useSelector((state: RootState) => state.categories.selectedCategories);
     const addLoveTokenToListNotification = useSelector((state: RootState) => state.notification.addLoveTokenToList);

@@ -5,7 +5,6 @@ import { useTheme } from '../../contexts/ThemeContext';
 const CustomButton: React.FC<ButtonProps> = ({ onClick, isLoading, label, loadingText }) => {
     const { theme } = useTheme();
     const themeStyles = theme === 'dark' ? 'bg-gray-900 hover:bg-gray-800 text-gray-200' : 'background--ce-soir hover:background--ce-soir:hover text-white';
-    console.log(theme)
 
     return (
         <button

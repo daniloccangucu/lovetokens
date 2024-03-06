@@ -122,8 +122,8 @@ describe("Testing loveTokenApi", () => {
       labels: ["Affection"],
       phrase: "when your tests pass",
       createdBy: {
-        userName: "TestUser",
-        userId: "65e6e4827936fe2178d45e41",
+        userName: "Test User",
+        userId: "65e86845abbaa8adc1af497d",
       },
     };
 
@@ -151,7 +151,7 @@ describe("Testing loveTokenApi", () => {
     createdLoveToken = loveTokenResponse.loveToken;
   });
   it("fetches love tokens for TestUser", async () => {
-    const userId = "65e6e4827936fe2178d45e41"; // test user's id
+    const userId = "65e86845abbaa8adc1af497d"; // test user's id
     const { data } = await store.dispatch(
       loveTokenApi.endpoints.fetchUserLoveToken.initiate({
         userId,
@@ -168,7 +168,7 @@ describe("Testing loveTokenApi", () => {
       expect(loveToken).toHaveProperty("phrase");
       expect(loveToken).toHaveProperty("creationDate");
       expect(loveToken).toHaveProperty("createdBy");
-      expect(loveToken.createdBy).toHaveProperty("userName", "TestUser");
+      expect(loveToken.createdBy).toHaveProperty("userName", "Test User");
       expect(loveToken.createdBy).toHaveProperty("userId", userId);
       expect(loveToken).toHaveProperty("tokenNumber");
     });
