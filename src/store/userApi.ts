@@ -31,12 +31,20 @@ export const userApi = createApi({
         },
       }),
     }),
+    getUserInfo: builder.query({
+      query: (token) => ({
+        url: "/user-info",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    }),
     deleteUser: builder.mutation({
-      query: ({ userId, accessToken }) => ({
+      query: ({ userId, jwToken }) => ({
         url: `/user/${userId}`,
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${jwToken}`,
         },
       }),
     }),
@@ -47,5 +55,6 @@ export const {
   useRegisterUserMutation,
   useLoginUserMutation,
   useCheckAuthQuery,
+  useGetUserInfoQuery,
   useDeleteUserMutation,
 } = userApi;

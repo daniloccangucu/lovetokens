@@ -17,6 +17,7 @@ import { useLoggedInState } from "./utils/useLoggedInState";
 import MyAffectionList from "./pages/MyAffectionList";
 import { useTheme } from "./contexts/ThemeContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import DeleteAccount from "./pages/DeleteAccount";
 
 function App() {
   const loggedUser = useLoggedInState();
@@ -38,6 +39,7 @@ function App() {
         <Route path="/profile" element={loggedUser ? <Profile /> : <Navigate to="/login" />} />
         <Route path="/atelier" element={loggedUser ? <AppreciationAtelier /> : <Navigate to="/login" />} />
         <Route path="/my-affection-list" element={loggedUser ? <MyAffectionList /> : <Navigate to="/login" />} />
+        <Route path="/delete" element={loggedUser ? <DeleteAccount /> : <Navigate to="/login" />} />
       </Routes>
     </main>
   </div>;

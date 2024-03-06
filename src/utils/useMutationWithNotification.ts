@@ -55,7 +55,7 @@ function useMutationWithNotification<TParams>(
       setIsLoading(false);
       setTimeout(() => {
         dispatch(clearNotification());
-      }, 1000);
+      }, 5000);
     }
   };
 
