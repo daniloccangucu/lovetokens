@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Category } from "../../models/Category";
 import { LoveToken } from "../../models/LoveToken";
-import { User } from "../../models/Types";
+import { RootState, User } from "../../models/Types";
 import { useDeleteLoveTokenMutation, useFetchUserLoveTokenQuery } from "../../store/loveTokensApi";
 import DataLoader from "../../utils/DataLoader";
 import CreationDisplay from "../lovearchive/CreationDisplay";
@@ -14,17 +14,18 @@ import { setDeleteLoveTokenNotification, clearDeleteLoveTokenNotification } from
 import { setClickedButtonId, clearClickedButtonId } from '../../store/deletedButtonSlice';
 import NotificationBox from "../shared/NotificationBox";
 import CustomButton from "../shared/CustomButton";
+import useTimeout from "../../utils/useTimeout";
 
 function ReadUsersLoveTokens({ user, categories }: { user: User, categories: Category[] }) {
     const dispatch = useDispatch();
     const { data: usersLoveTokens = [], error, isLoading: isUsersLoveTokensLoading } = useFetchUserLoveTokenQuery({ userId: user.userId, token: user.token });
     const [mutate, { isLoading: isDeleteLoveTokenLoading }] = useDeleteLoveTokenMutation();
-
+    const deleteLoveTokenNotification = useSelector((state: RootState) => state.notification.deleteLoveToken);
     const [editingLoveToken, setEditingLoveToken] = useState<LoveToken | null>(null);
 
     const [handleDeleteLoveTokenFromList] = useMutationWithNotification(
         () => [mutate, { isLoading: isDeleteLoveTokenLoading }],
-        "Love Token removed from Appreciation List",
+        "Love Token deleted. Refreshing your Atelier...",
         "Failed to remove Love Token. Please try again later.",
         setDeleteLoveTokenNotification,
         clearDeleteLoveTokenNotification
@@ -39,7 +40,6 @@ function ReadUsersLoveTokens({ user, categories }: { user: User, categories: Cat
         });
     };
 
-
     const handleEditLoveToken = (loveToken: LoveToken) => {
         setEditingLoveToken(loveToken);
     };
@@ -47,6 +47,12 @@ function ReadUsersLoveTokens({ user, categories }: { user: User, categories: Cat
     const handleExitEditingMode = () => {
         setEditingLoveToken(null);
     };
+
+    useTimeout(() => {
+        if (deleteLoveTokenNotification.isSuccess) {
+            window.location.reload();
+        }
+    }, 4500);
 
     return (
             <DataLoader

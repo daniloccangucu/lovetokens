@@ -75,7 +75,6 @@ export const handleFormSubmission = async (
           updatedLoveToken: { labels: data.labels, phrase: data.phrase },
           jwtToken: data.createdBy.token,
         });
-      } else if (method === "DELETE") {
       }
     } else {
       result = await callback(data);

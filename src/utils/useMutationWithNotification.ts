@@ -34,14 +34,14 @@ function useMutationWithNotification<TParams>(
         if (response.data.success) {
           dispatch(
             setNotification({
-              message: response.data.message || successMessage,
+              message: successMessage,
               isSuccess: true,
             })
           );
         } else {
           dispatch(
             setNotification({
-              message: response.data.message || failureMessage,
+              message: failureMessage,
               isSuccess: false,
             })
           );
