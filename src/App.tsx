@@ -18,6 +18,7 @@ import MyAffectionList from "./pages/MyAffectionList";
 import { useTheme } from "./contexts/ThemeContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import DeleteAccount from "./pages/DeleteAccount";
+import Footer from "./components/shared/Footer";
 
 function App() {
   const loggedUser = useLoggedInState();
@@ -42,6 +43,7 @@ function App() {
         <Route path="/delete" element={loggedUser ? <DeleteAccount /> : <Navigate to="/login" />} />
       </Routes>
     </main>
+    <Footer />
   </div>;
 }
 
