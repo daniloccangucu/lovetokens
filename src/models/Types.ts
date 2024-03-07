@@ -187,7 +187,10 @@ export interface ButtonProps {
   isLoading?: boolean;
   label: string;
   loadingText?: string;
-  customClass?: string;
+  customClass?: {
+    replace: boolean;
+    code: string;
+  };
   buttonId?: string;
 }
 

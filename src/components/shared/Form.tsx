@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 
 import { FieldValues } from "react-hook-form";
 import { FormProps } from "../../models/Types";
-import { handleFormSubmission } from '../../utils/utils';
+import { getFormBackgroundClass, getFormSubmitButtonClass, handleFormSubmission } from '../../utils/utils';
 import { useTheme } from "../../contexts/ThemeContext";
 
 const Form = (
@@ -22,13 +22,8 @@ const Form = (
     const { theme } = useTheme();
     const dispatch = useDispatch();
 
-    const formBackgroundClass = theme === 'light' ?
-        'background--lighter-persian-pink' :
-        'bg-indigo-900 text-gray-200';
-
-    const formSubmitButtonClass = theme === 'light' ?
-        'background--ce-soir hover:background--ce-soir:hover text-white' :
-        'bg-gray-900 hover:bg-gray-800 text-gray-200'
+    const formBackgroundClass = getFormBackgroundClass(theme)
+    const formSubmitButtonClass = getFormSubmitButtonClass(theme)
 
     const onSubmitCallback = async (data: FieldValues) => {
         await handleFormSubmission({

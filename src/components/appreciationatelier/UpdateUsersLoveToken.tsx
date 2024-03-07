@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { useNavigate } from "react-router-dom";
 
 import Form from '../shared/Form';
 import InputField from '../shared/InputField';
@@ -13,6 +12,7 @@ import { RootState, User } from '../../models/Types';
 import useTimeout from '../../utils/useTimeout';
 import { Category } from '../../models/Category';
 import { LoveToken } from '../../models/LoveToken';
+import CustomButton from '../shared/CustomButton';
 
 function UpdateUsersLoveToken({
     categories,
@@ -28,11 +28,11 @@ function UpdateUsersLoveToken({
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [updateLoveToken, { isLoading }] = useUpdateLoveTokenMutation();
     const updateLoveTokenNotification = useSelector((state: RootState) => state.notification.updateLoveToken);
-    const navigate = useNavigate();
 
     useTimeout(() => {
-        if (updateLoveTokenNotification.isSuccess && updateLoveTokenNotification.uri) {
-            navigate(updateLoveTokenNotification.uri);
+        console.log(updateLoveTokenNotification.isSuccess, updateLoveTokenNotification.uri)
+        if (updateLoveTokenNotification.isSuccess) {
+            window.location.reload();
         }
     }, 4500);
 
@@ -42,7 +42,7 @@ function UpdateUsersLoveToken({
             callback={updateLoveToken}
             method={"PUT"}
             isLoading={isLoading}
-            successMessage="Love Token updated successfully! Redirecting to its page..."
+            successMessage="Love Token updated successfully! Refreshing your Atelier..."
             errorMessage="Error while updating Love Token. Please try again."
             setNotification={setUpdateLoveTokenNotification}
             clearNotification={clearUpdateLoveTokenNotification}
@@ -68,7 +68,7 @@ function UpdateUsersLoveToken({
                 options={categories.map((category: Category) => category.name)}
                 defaultValue={loveToken.labels}
             />
-            <button type="button" onClick={onExitEditingMode}>Cancel</button>
+            <CustomButton onClick={onExitEditingMode} label="Cancel" customClass={{ replace: true, code: "mr-2 font-bold py-2 px-4 rounded mt-4" }} />
         </Form>
     );
 }

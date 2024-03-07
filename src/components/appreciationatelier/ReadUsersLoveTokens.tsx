@@ -30,8 +30,8 @@ function ReadUsersLoveTokens({ user, categories }: { user: User, categories: Cat
         clearDeleteLoveTokenNotification
     );
 
-    const handleDeleteButtonClick = (tokenNumber: string) => {
-        dispatch(setClickedButtonId(tokenNumber));
+    const handleDeleteButtonClick = (tokenNumber: string, buttonId: string) => {
+        dispatch(setClickedButtonId(buttonId));
         handleDeleteLoveTokenFromList({ tokenNumber }).then(() => {
             dispatch(clearClickedButtonId());
         }).catch(() => {
@@ -60,7 +60,7 @@ function ReadUsersLoveTokens({ user, categories }: { user: User, categories: Cat
                     </section>
                 ) : (
                     <section className="flex justify-between items-start p-4">
-                        <div className="flex flex-wrap justify-center items-center">
+                            <div className="w-full flex flex-wrap justify-center items-center">
                                 {usersLoveTokens.map((usersLoveToken: LoveToken) => (
                                     <article
                                         key={usersLoveToken.tokenNumber}
@@ -79,15 +79,14 @@ function ReadUsersLoveTokens({ user, categories }: { user: User, categories: Cat
                                             <CreationDisplay
                                                 creationDate={usersLoveToken.creationDate}
                                                 size="small"
-                                            />
-                                                    {usersLoveToken._id}
+                                                    />
                                                     <CustomButton
                                                         onClick={() => handleEditLoveToken(usersLoveToken)}
                                                         label="Edit"
-                                                        customClass={`mr-2 ${usersLoveToken._id}`}
+                                                        customClass={{ replace: false, code: "mr-2" }}
                                                     />
                                                     <CustomButton
-                                                        onClick={() => handleDeleteButtonClick(String(usersLoveToken._id))}
+                                                        onClick={() => handleDeleteButtonClick(String(usersLoveToken.tokenNumber), usersLoveToken._id)}
                                                         label="Delete"
                                                         isLoading={isDeleteLoveTokenLoading}
                                                         loadingText="Deleting..."

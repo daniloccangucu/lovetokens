@@ -10,13 +10,12 @@ const CustomButton: React.FC<ButtonProps> = ({ onClick, isLoading, label, loadin
 
     return (
         <button
-            className={`font-bold py-1 px-2 rounded mt-1 text-xs
+            className={`${customClass?.replace === true ? '' : 'font-bold py-1 px-2 rounded mt-1 text-xs'}
                 ${buttonId ?
                     ((isLoading && buttonId === currentClickedButtonId) ? 'opacity-50 cursor-not-allowed' : '') :
                     (isLoading ? 'opacity-50 cursor-not-allowed' : '')
                 }
-                ${themeStyles}
-                ${customClass}`
+                ${customClass?.code ? (`${themeStyles} ${customClass?.code}`) : (themeStyles)}`
             }
             onClick={onClick}
             disabled={buttonId ?

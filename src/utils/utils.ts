@@ -149,3 +149,14 @@ export const getUserFromLocalStorage = () => {
   };
 };
 
+export const getFormSubmitButtonClass = (theme: string): string => {
+  return theme === "light"
+    ? "background--ce-soir hover:background--ce-soir:hover text-white"
+    : "bg-gray-900 hover:bg-gray-800 text-gray-200";
+};
+
+export const getFormBackgroundClass = (theme: string): string => {
+  return theme === "light"
+    ? "background--lighter-persian-pink"
+    : "bg-indigo-900 text-gray-200";
+};
