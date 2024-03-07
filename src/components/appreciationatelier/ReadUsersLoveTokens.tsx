@@ -70,7 +70,7 @@ function ReadUsersLoveTokens({ user, categories }: { user: User, categories: Cat
                                 {usersLoveTokens.map((usersLoveToken: LoveToken) => (
                                     <article
                                         key={usersLoveToken.tokenNumber}
-                                        className="sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mr-4"
+                                        className="sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mr-4 mb-2"
                                     >
                                         {editingLoveToken === usersLoveToken ? (
                                             <UpdateUsersLoveToken

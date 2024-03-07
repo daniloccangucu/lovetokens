@@ -51,7 +51,7 @@ function AppreciationAtelier() {
                     />
                     <HeaderTwo title="Create a new Love Token" position="text-center" />
                     <CreateLoveToken categories={categories} createdUser={user!} />
-                    <HeaderTwo title="Your created Love Tokens" position="text-center" />
+                    <HeaderTwo title={`${user?.role === 'user' ? "Your created Love Tokens" : "All created Love Tokens"}`} position="text-center" />
                     <ReadUsersLoveTokens categories={categories} user={user!} />
                 </section>
             )}

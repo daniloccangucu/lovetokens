@@ -30,7 +30,6 @@ function UpdateUsersLoveToken({
     const updateLoveTokenNotification = useSelector((state: RootState) => state.notification.updateLoveToken);
 
     useTimeout(() => {
-        console.log(updateLoveTokenNotification.isSuccess, updateLoveTokenNotification.uri)
         if (updateLoveTokenNotification.isSuccess) {
             window.location.reload();
         }

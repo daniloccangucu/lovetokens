@@ -104,7 +104,18 @@ Keep track of your favorite Love Tokens from the Love Archive with the My Affect
 -  Easily manage your collection of Love Tokens by editing the list order or deleting tokens.
 -  Curate a selection of Love Tokens that resonate with you the most.
 -   **SOON:** Share your Affection List with people you love!
-![enter image description here](https://i.postimg.cc/ncR5Wm6R/affection-list-gif.gif)
+
+![Affection List screenshot](https://i.postimg.cc/ncR5Wm6R/affection-list-gif.gif)
+
+## Admin Features:
+Admins are users with more powers than the rest of users. In the Appreciation Atelier, they are allowed to:
+-   Edit all Love Tokens.
+-   Delete any Love Token.
+- **SOON:** UI to delete any user (right now an admin can in the backend)
+
+![Screenshot of admin priviledges in Appreciation Atelier](https://i.postimg.cc/d0ymbrQP/Screenshot-2024-03-07-at-16-01-40.png)
+*You can log as an admin using the e-mail: admin@yesadmin.com, password: theboss. Be kind and don't delete everything :D*
+
 
 ## Architecture & Design
 
