@@ -1,23 +1,36 @@
 import React from 'react';
-import { ButtonProps } from '../../models/Types';
+import { ButtonProps, RootState } from '../../models/Types';
 import { useTheme } from '../../contexts/ThemeContext';
+import { useSelector } from 'react-redux';
 
-const CustomButton: React.FC<ButtonProps> = ({ onClick, isLoading, label, loadingText }) => {
+const CustomButton: React.FC<ButtonProps> = ({ onClick, isLoading, label, loadingText, customClass, buttonId }) => {
     const { theme } = useTheme();
     const themeStyles = theme === 'dark' ? 'bg-gray-900 hover:bg-gray-800 text-gray-200' : 'background--ce-soir hover:background--ce-soir:hover text-white';
+    const currentClickedButtonId = useSelector((state: RootState) => state.deletedButton.currentClickedButtonId);
 
     return (
         <button
             className={`font-bold py-1 px-2 rounded mt-1 text-xs
-                ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}
-                ${themeStyles}`
+                ${buttonId ?
+                    ((isLoading && buttonId === currentClickedButtonId) ? 'opacity-50 cursor-not-allowed' : '') :
+                    (isLoading ? 'opacity-50 cursor-not-allowed' : '')
+                }
+                ${themeStyles}
+                ${customClass}`
             }
             onClick={onClick}
-            disabled={isLoading}
+            disabled={buttonId ?
+                (isLoading && buttonId === currentClickedButtonId) :
+                (isLoading)
+            }
         >
-            {isLoading ? loadingText : label}
+            {buttonId ?
+                ((isLoading && buttonId === currentClickedButtonId) ? loadingText : label) :
+                (isLoading ? `${loadingText}` : `${label}`)
+            }
         </button>
     );
 };
 
 export default CustomButton;
+

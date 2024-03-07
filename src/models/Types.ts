@@ -187,6 +187,8 @@ export interface ButtonProps {
   isLoading?: boolean;
   label: string;
   loadingText?: string;
+  customClass?: string;
+  buttonId?: string;
 }
 
 export interface SubmitParams {
@@ -226,11 +228,16 @@ export interface AuthState {
   updateAuthStatus: boolean;
 }
 
+export interface DeletedButtonState {
+  currentClickedButtonId: string | null;
+}
+
 export interface RootState {
   categories: CategoriesState;
   creationSort: SortState;
   notification: NotificationState;
   auth: AuthState;
+  deletedButton: DeletedButtonState;
 }
 
 export interface NotificationState {

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
+
 import { Category } from "../../models/Category";
 import { LoveToken } from "../../models/LoveToken";
 import { User } from "../../models/Types";
@@ -9,11 +11,16 @@ import SmallPhraseDisplay from "../lovearchive/SmallPhraseDisplay";
 import UpdateUsersLoveToken from "./UpdateUsersLoveToken";
 import useMutationWithNotification from "../../utils/useMutationWithNotification";
 import { setDeleteLoveTokenNotification, clearDeleteLoveTokenNotification } from "../../store/notificationSlice";
+import { setClickedButtonId, clearClickedButtonId } from '../../store/deletedButtonSlice';
 import NotificationBox from "../shared/NotificationBox";
+import CustomButton from "../shared/CustomButton";
 
 function ReadUsersLoveTokens({ user, categories }: { user: User, categories: Category[] }) {
+    const dispatch = useDispatch();
     const { data: usersLoveTokens = [], error, isLoading: isUsersLoveTokensLoading } = useFetchUserLoveTokenQuery({ userId: user.userId, token: user.token });
     const [mutate, { isLoading: isDeleteLoveTokenLoading }] = useDeleteLoveTokenMutation();
+
+    const [editingLoveToken, setEditingLoveToken] = useState<LoveToken | null>(null);
 
     const [handleDeleteLoveTokenFromList] = useMutationWithNotification(
         () => [mutate, { isLoading: isDeleteLoveTokenLoading }],
@@ -24,10 +31,14 @@ function ReadUsersLoveTokens({ user, categories }: { user: User, categories: Cat
     );
 
     const handleDeleteButtonClick = (tokenNumber: string) => {
-        handleDeleteLoveTokenFromList({ tokenNumber });
+        dispatch(setClickedButtonId(tokenNumber));
+        handleDeleteLoveTokenFromList({ tokenNumber }).then(() => {
+            dispatch(clearClickedButtonId());
+        }).catch(() => {
+            dispatch(clearClickedButtonId());
+        });
     };
 
-    const [editingLoveToken, setEditingLoveToken] = useState<LoveToken | null>(null);
 
     const handleEditLoveToken = (loveToken: LoveToken) => {
         setEditingLoveToken(loveToken);
@@ -69,8 +80,20 @@ function ReadUsersLoveTokens({ user, categories }: { user: User, categories: Cat
                                                 creationDate={usersLoveToken.creationDate}
                                                 size="small"
                                             />
-                                                <button onClick={() => handleEditLoveToken(usersLoveToken)}>Edit</button>
-                                                <button onClick={() => handleDeleteButtonClick(String(usersLoveToken.tokenNumber))}>Delete</button>
+                                                    {usersLoveToken._id}
+                                                    <CustomButton
+                                                        onClick={() => handleEditLoveToken(usersLoveToken)}
+                                                        label="Edit"
+                                                        customClass={`mr-2 ${usersLoveToken._id}`}
+                                                    />
+                                                    <CustomButton
+                                                        onClick={() => handleDeleteButtonClick(String(usersLoveToken._id))}
+                                                        label="Delete"
+                                                        isLoading={isDeleteLoveTokenLoading}
+                                                        loadingText="Deleting..."
+                                                        buttonId={usersLoveToken._id}
+                                                    />
+
                                             </>
                                         )}
                                     </article>

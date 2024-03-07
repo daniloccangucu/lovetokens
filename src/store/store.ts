@@ -7,6 +7,7 @@ import categoriesReducer from "./categoriesSlice";
 import creationSortReducer from "./creationSortSlice";
 import notificationReducer from "./notificationSlice";
 import authReducer from "./authSlice";
+import deletedButtonReducer from "./deletedButtonSlice";
 import { affectionListApi } from "./affectionListApi";
 
 export const store = configureStore({
@@ -18,6 +19,7 @@ export const store = configureStore({
     creationSort: creationSortReducer,
     notification: notificationReducer,
     auth: authReducer,
+    deletedButton: deletedButtonReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
