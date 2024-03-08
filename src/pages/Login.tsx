@@ -13,7 +13,6 @@ import {
     setLoginNotification
 } from '../store/notificationSlice';
 import useNotificationToast from '../utils/useNotificationToast';
-import { GoogleLogin } from '@react-oauth/google';
 import GoogleLoginButton from '../components/login/GoogleLoginButton';
 
 function Login() {
