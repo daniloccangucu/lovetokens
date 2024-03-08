@@ -1,0 +1,25 @@
+└─ fs17-Frontend-project
+   ├─ components
+   │  └─ LoveTokensPreview.tsx
+   │     ├─ line 58: TODO if user has in Affection List, button disabled
+   │     └─ line 59: TODO adding spin, added! / remove
+   ├─ pages
+   │  ├─ Auth.tsx
+   │  │  └─ line 31: TODO better auth message?
+   │  ├─ Home.tsx
+   │  │  ├─ line 36: TODO button to add featured LT to affection list if logged in
+   │  │  ├─ line 37: TODO button to create your own LT if logged in
+   │  │  └─ line 38: TODO display inactivated buttons if not logged in
+   │  ├─ Logout.tsx
+   │  │  └─ line 24: TODO better logout?
+   │  ├─ MyAffectionList.tsx
+   │  │  ├─ line 133: TODO shuffle order
+   │  │  ├─ line 134: TODO saving... saved!
+   │  │  └─ line 135: TODO cancel editing
+   │  └─ Profile.tsx
+   │     └─ line 52: TODO delete account
+   └─ store
+      ├─ loveTokensApi.ts
+      │  └─ line 36: TODO next mutation should have the token
+      └─ notificationSlice.ts
+         └─ line 4: TODO refactor everything that's possible...

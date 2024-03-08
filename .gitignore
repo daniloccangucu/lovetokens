@@ -22,6 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .vscode/settings.json
-todo-tree-20240302-0815.txt
 .env
 package-lock.json

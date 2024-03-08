@@ -294,6 +294,37 @@ export interface User {
   token: string | null;
 }
 
+export interface UserLogin {
+  email: string | null;
+  password: string | null;
+}
+
+export interface UserRegister {
+  userName: string | null;
+  email: string | null;
+  password: string | null;
+}
+
+export interface LoveTokenIdRequest {
+  loveTokenId: string | null;
+}
+
+export interface AffectionListOrder {
+  newOrder: string[];
+}
+
+export interface AffectionListGetResponse {
+  message: string;
+  affectionList: AffectionList;
+}
+
+interface AffectionList {
+  _id: { $oid: string };
+  user: { $oid: string };
+  __v: number;
+  loveTokens: { $oid: string }[];
+}
+
 export interface SectionLoveTokensPreview extends CategoriesState {}
 
 export interface CategoriesSectionProps extends CategoriesState {
