@@ -1,18 +1,27 @@
+import { userServer } from "./mocks/userServer";
 import { userApi } from "../store/userApi";
 import { store } from "../store/store";
+import { mockToken, mockUsers } from "./mocks/mockedData";
 
-describe("Testing userApi", () => {
-  let accessToken = "";
+beforeAll(() => {
+  userServer.listen();
+});
+
+afterAll(() => {
+  userServer.close();
+});
+
+describe("Testing userMockedApi", () => {
+  let accessToken = mockToken;
   let userId = "";
   const userData = {
-    username: "testuser",
-    email: "testuser@example.com",
-    password: "testpassword",
+    email: "user@test.com",
+    password: "$2b$10$wVcZuG.PuBVgGH/BPZmUJe57BrPdZon3XESQOr250yIiuw9USD30y",
   };
 
-  it("creates a new test user", async () => {
+  it("logs in the test user", async () => {
     const response = await store.dispatch(
-      userApi.endpoints.registerUser.initiate(userData)
+      userApi.endpoints.loginUser.initiate(userData)
     );
 
     if ("error" in response) {
@@ -21,7 +30,7 @@ describe("Testing userApi", () => {
     }
 
     expect(response.data).toBeDefined();
-    expect(response.data.message).toBe("User registered successfully");
+    expect(response.data.user).toEqual(mockUsers[0]);
     expect(response.data.token).toBeDefined();
   });
   it("fails to create a new user with existing email", async () => {
@@ -30,22 +39,9 @@ describe("Testing userApi", () => {
     );
 
     expect(response.error).toBeDefined();
-  });
-  it("logs in test user", async () => {
-    const response = await store.dispatch(
-      userApi.endpoints.loginUser.initiate(userData)
-    );
-
-    if ("error" in response) {
-      console.error("Error login test user:", response.error);
-      throw new Error("Failed to login test user");
-    }
-
-    expect(response.data).toBeDefined();
-    expect(response.data.message).toBe("Login successful");
-    expect(response.data.token).toBeDefined();
-
-    accessToken = response.data.token;
+    expect(response.error.status).toEqual(404);
+    expect(response.error.data.message).toBeDefined();
+    expect(response.error.data.message).toEqual("User already registered");
   });
   it("checks user authentication", async () => {
     expect(accessToken).toBeTruthy();
@@ -55,8 +51,8 @@ describe("Testing userApi", () => {
     );
 
     expect(response.data).toBeDefined();
-    expect(response.data.role).toBe("user");
-    expect(response.data.userName).toBe("testuser");
+    expect(response.data.message).toBe("Success!");
+    expect(response.data.userId).toBe("65e86845abbaa8adc1af497d");
 
     userId = response.data.userId;
   });
@@ -76,7 +72,7 @@ describe("Testing userApi", () => {
     }
 
     expect(response.data).toBeDefined();
-    expect(response.data.success).toBe(true);
-    expect(response.data.message).toBe("User deleted successfully");
+    expect(response.data.message).toBeDefined();
+    expect(response.data.message).toBe("User has been deleted!");
   });
 });
