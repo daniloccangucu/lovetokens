@@ -4,9 +4,9 @@ import { Category } from "../models/Category";
 import { CreateLoveTokenResponse } from "../models/Types";
 
 const baseUrl =
-  process.env.NODE_ENV === "development"
-    ? process.env.REACT_APP_LOVE_TOKEN_API_URL
-    : process.env.REACT_APP_LOVE_TOKEN_TEST_API_URL;
+  process.env.NODE_ENV === "test"
+    ? process.env.REACT_APP_LOVE_TOKEN_TEST_API_URL
+    : process.env.REACT_APP_LOVE_TOKEN_API_URL;
 
 export const loveTokenApi = createApi({
   reducerPath: "loveTokensApi",
