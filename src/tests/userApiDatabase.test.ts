@@ -1,3 +1,5 @@
+export {};
+
 test(`Kindly uncomment all the following coding if testing
       with process.env.REACT_APP_LOVE_TOKEN_TEST_API_URL`, () => {
   expect(true).toBe(true);
